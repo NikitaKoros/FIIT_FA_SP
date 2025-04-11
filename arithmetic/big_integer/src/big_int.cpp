@@ -179,7 +179,6 @@ bool big_int::operator==(const big_int &other) const noexcept
 
 big_int::big_int(const std::vector<unsigned int, pp_allocator<unsigned int>> &digits, bool sign)
 {
-    throw not_implemented("big_int::big_int(const std::vector<unsigned int, pp_allocator<unsigned int>> &digits, bool sign)", "your code should be here...");
 }
 
 big_int::big_int(std::vector<unsigned int, pp_allocator<unsigned int>> &&digits, bool sign) noexcept
@@ -189,13 +188,61 @@ big_int::big_int(std::vector<unsigned int, pp_allocator<unsigned int>> &&digits,
 
 big_int::big_int(const std::string &num, unsigned int radix, pp_allocator<unsigned int>)
 {
-    throw not_implemented("big_int::big_int(const std::string &num, unsigned int radix, pp_allocator<unsigned int>)", "your code should be here...");
+    if (radix != 10) {
+        throw not_implemented("big_int::big_int with radix != 10");
+    }
+
+    _sign = true;
+    size_t start = 0;
+    if (!num.empty()) {
+        if (num[0] == '-') {
+            _sign = false;
+            start = 1;
+        } else if (num[0] == '+') {
+            start = 1;
+        }
+    }
+
+    while (start < num.size() && num[start] == '0') {
+        ++start;
+    }
+
+    if (start == num.size()) {
+        _sign = true;
+        _digits.clear();
+        return;
+    }
+
+    std::string digits_str = num.substr(start);
+    _digits.push_back(0);
+
+    for (char c : digits_str) {
+        if (!isdigit(c)) {
+            throw std::invalid_argument("invalid digit in number string");
+        }
+        unsigned int digit = c - '0';
+        multiply_by_digit(10);
+        unsigned long long carry = digit;
+        for (size_t i = 0; i < _digits.size() && carry > 0; ++i) {
+            unsigned long long sum = _digits[i] + carry;
+            _digits[i] = static_cast<unsigned int>(sum & 0xFFFFFFFF);
+            carry = sum >> 32;
+        }
+        if (carry > 0) {
+            _digits.push_back(static_cast<unsigned int>(carry));
+        }
+    }
+
+    while (!_digits.empty() && _digits.back() == 0) {
+        _digits.pop_back();
+    }
+
+    if (_digits.empty()) {
+        _sign = true;
+    }
 }
 
-big_int::big_int(pp_allocator<unsigned int>)
-{
-    throw not_implemented("big_int::big_int(pp_allocator<unsigned int>)", "your code should be here...");
-}
+big_int::big_int(pp_allocator<unsigned int>) :_sign(true), _digits(pp_allocator<unsigned int>()){}
 
 big_int &big_int::multiply_assign(const big_int &other, big_int::multiplication_rule rule) &
 {
@@ -215,4 +262,16 @@ big_int &big_int::modulo_assign(const big_int &other, big_int::division_rule rul
 big_int operator""_bi(unsigned long long n)
 {
     throw not_implemented("big_int operator\"\"_bi(unsigned long long n)", "your code should be here...");
+}
+
+void big_int::multiply_by_digit(unsigned int digit) {
+    unsigned long long carry = 0;
+    for (size_t i = 0; i < _digits.size(); ++i) {
+        unsigned long long product = (unsigned long long)_digits[i] * digit + carry;
+        _digits[i] = static_cast<unsigned int>(product & 0xFFFFFFFF);
+        carry = product >> 32;
+    }
+    if (carry != 0) {
+        _digits.push_back(static_cast<unsigned int>(carry));
+    }
 }

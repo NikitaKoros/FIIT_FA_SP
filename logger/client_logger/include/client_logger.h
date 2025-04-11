@@ -36,7 +36,7 @@ private:
 
         //if ofstream* is nullptr initializes it with opened file from global map
         void open();
-
+        void close();
         ~refcounted_stream();
     };
 
