@@ -13,7 +13,6 @@ class client_logger final:
     public logger
 {
 private:
-    //region refcounted_stream
 
     class refcounted_stream final
     {
