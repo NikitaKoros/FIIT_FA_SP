@@ -247,8 +247,8 @@ big_int &big_int::operator<<=(size_t shift) &
         return *this;
     }
     
-    size_t digit_shifts = shift / 32;
-    size_t bit_shifts = shift % 32;
+    size_t digit_shifts = shift / (sizeof(unsigned int) * 8);
+    size_t bit_shifts = shift % (sizeof(unsigned int) * 8);
     
     if (digit_shifts > 0) {
         _digits.insert(_digits.begin(), digit_shifts, 0);
@@ -260,7 +260,7 @@ big_int &big_int::operator<<=(size_t shift) &
             unsigned long long current = static_cast<unsigned long long>(_digits[i]) << bit_shifts;
             current |= carry;
             _digits[i] = static_cast<unsigned int>(current & 0xFFFFFFFF);
-            carry = current >> 32;
+            carry = current >> (sizeof(unsigned int) * 8);
         }
         
         if (carry > 0) {
@@ -278,8 +278,8 @@ big_int &big_int::operator>>=(size_t shift) &
         return *this;
     }
     
-    size_t digit_shifts = shift / 32;
-    size_t bit_shifts = shift % 32;
+    size_t digit_shifts = shift / (sizeof(unsigned int) * 8);
+    size_t bit_shifts = shift % (sizeof(unsigned int) * 8);
     
     if (digit_shifts >= _digits.size()) {
         _digits.clear();
@@ -296,7 +296,7 @@ big_int &big_int::operator>>=(size_t shift) &
         unsigned long long borrow = 0;
         for (int i = _digits.size() - 1; i >= 0; --i) {
             unsigned long long current = static_cast<unsigned long long>(_digits[i]);
-            unsigned int next_borrow = (current & ((1ULL << bit_shifts) - 1)) << (32 - bit_shifts);
+            unsigned int next_borrow = (current & ((1ULL << bit_shifts) - 1)) << ((sizeof(unsigned int) * 8) - bit_shifts);
             _digits[i] = (current >> bit_shifts) | static_cast<unsigned int>(borrow);
             borrow = next_borrow;
         }
@@ -321,7 +321,7 @@ big_int &big_int::plus_assign(const big_int &other, size_t shift) &
         unsigned long long d1 = (i < other._digits.size()) ? other._digits[i] : 0;
         unsigned long long sum = _digits[idx] + d1 + carry;
         _digits[idx] = static_cast<unsigned int>(sum & 0xFFFFFFFF);
-        carry = sum >> 32;
+        carry = sum >> (sizeof(unsigned int) * 8);
     }
 
     while (!_digits.empty() && _digits.back() == 0) {
@@ -526,7 +526,7 @@ big_int::big_int(const std::string &num, unsigned int radix, pp_allocator<unsign
         for (size_t i = 0; i < _digits.size() && carry > 0; ++i) {
             unsigned long long sum = _digits[i] + carry;
             _digits[i] = static_cast<unsigned int>(sum & 0xFFFFFFFF);
-            carry = sum >> 32;
+            carry = sum >> (sizeof(unsigned int) * 8);
         }
         if (carry > 0) {
             _digits.push_back(static_cast<unsigned int>(carry));
@@ -568,7 +568,7 @@ big_int &big_int::multiply_assign(const big_int &other, big_int::multiplication_
                                            carry;
                 
                 result[i + j] = static_cast<unsigned int>(current & 0xFFFFFFFF);
-                carry = current >> 32;
+                carry = current >> (sizeof(unsigned int) * 8);
             }
         }
         
@@ -589,20 +589,16 @@ big_int &big_int::multiply_assign(const big_int &other, big_int::multiplication_
 }
 
 big_int& big_int::divide_assign(const big_int& other, division_rule rule) & {
-    // Проверка деления на ноль
     if (other._digits.empty() || (other._digits.size() == 1 && other._digits[0] == 0)) {
         throw std::invalid_argument("Division by zero");
     }
 
-    // Сохраняем знак результата
     bool result_sign = (_sign == other._sign);
     
-    // Работаем с положительными значениями
     big_int dividend = *this;
     big_int divisor = other;
     dividend._sign = divisor._sign = true;
 
-    // Если делимое меньше делителя, результат 0
     if (dividend < divisor) {
         _digits.clear();
         _digits.push_back(0);
@@ -611,21 +607,16 @@ big_int& big_int::divide_assign(const big_int& other, division_rule rule) & {
     }
 
     if (rule == division_rule::trivial) {
-        // Используем временный вектор с тем же аллокатором для сбора цифр результата
         std::vector<unsigned int, pp_allocator<unsigned int>> quotient_digits;
         big_int remainder;
 
-        // Начинаем с наиболее значимых цифр
         for (int i = dividend._digits.size() - 1; i >= 0; --i) {
-            // Сдвигаем остаток влево (умножаем на базу)
-            remainder._digits.push_back(0); // временно увеличиваем размер
+            remainder._digits.push_back(0);
             
-            // Сдвигаем все цифры влево на одну позицию
             for (int j = remainder._digits.size() - 1; j > 0; --j) {
                 remainder._digits[j] = remainder._digits[j-1];
             }
             
-            // Добавляем текущую цифру делимого
             remainder._digits[0] = dividend._digits[i];
             remainder.optimize();
 
@@ -634,7 +625,6 @@ big_int& big_int::divide_assign(const big_int& other, division_rule rule) & {
                 continue;
             }
 
-            // Используем бинарный поиск для нахождения цифры частного
             unsigned int q = 0;
             unsigned int left = 0, right = 0xFFFFFFFF;
             
@@ -659,10 +649,8 @@ big_int& big_int::divide_assign(const big_int& other, division_rule rule) & {
             quotient_digits.push_back(q);
         }
 
-        // Переворачиваем вектор цифр, так как мы собрали их в обратном порядке
         std::reverse(quotient_digits.begin(), quotient_digits.end());
         
-        // Убираем ведущие нули
         while (!quotient_digits.empty() && quotient_digits.back() == 0) {
             quotient_digits.pop_back();
         }
@@ -670,7 +658,6 @@ big_int& big_int::divide_assign(const big_int& other, division_rule rule) & {
         _digits = std::move(quotient_digits);
         _sign = result_sign;
         
-        // Если результат пустой, это ноль
         if (_digits.empty()) {
             _digits.push_back(0);
             _sign = true;
@@ -791,7 +778,7 @@ void big_int::multiply_by_digit(unsigned int digit) {
     for (size_t i = 0; i < _digits.size(); ++i) {
         unsigned long long product = (unsigned long long)_digits[i] * digit + carry;
         _digits[i] = static_cast<unsigned int>(product & 0xFFFFFFFF);
-        carry = product >> 32;
+        carry = product >> (sizeof(unsigned int) * 8);
     }
     if (carry != 0) {
         _digits.push_back(static_cast<unsigned int>(carry));
@@ -801,7 +788,7 @@ void big_int::multiply_by_digit(unsigned int digit) {
 unsigned int big_int::divide_by_10() {
     unsigned long long remainder = 0;
     for (auto it = _digits.rbegin(); it != _digits.rend(); ++it) {
-        unsigned long long value = (remainder << 32) | *it;
+        unsigned long long value = (remainder << (sizeof(unsigned int) * 8)) | *it;
         remainder = value % 10;
         *it = static_cast<unsigned int>(value / 10);
     }
