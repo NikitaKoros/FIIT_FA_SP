@@ -195,8 +195,9 @@ client_logger::refcounted_stream& client_logger::refcounted_stream::operator=(cl
 
 void client_logger::refcounted_stream::open()
 {
-    if (_stream.first.empty())
+    if (_stream.first.empty()) {
         return;
+    }
 
     auto& global_entry = _global_streams[_stream.first];
     if (global_entry.first == 0)

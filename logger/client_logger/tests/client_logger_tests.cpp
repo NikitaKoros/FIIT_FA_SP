@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
 
     client_logger_builder builder;
 
-    builder.add_file_stream("a.txt" ,logger::severity::trace).
+    builder.set_destination("/home/nikita/university/fiit/FIIT_FA_SP/build/logger/client_logger/logger").
+            add_file_stream("a.txt" ,logger::severity::trace).
             add_file_stream("b.txt" ,logger::severity::trace).
             add_file_stream("b.txt" ,logger::severity::trace).
             add_file_stream("a.txt", logger::severity::debug).

@@ -19,8 +19,31 @@ public:
 
     /** Perfect forwarding ctor
      */
+
+     fraction(const big_int& numerator) 
+        : _numerator(numerator), _denominator(1) {
+        optimise(); // Хотя знаменатель 1, можно вызвать для универсальности
+    }
+
     template<std::convertible_to<big_int> f, std::convertible_to<big_int> s>
-    fraction(f &&numerator, s &&denominator);
+    fraction(f &&numerator, s &&denominator)
+    : _numerator(std::forward<f>(numerator)), 
+      _denominator(std::forward<s>(denominator)) 
+    {
+        if (_denominator == 0) 
+            throw std::invalid_argument("Denominator cannot be zero");
+        optimise();
+    }
+
+    template<std::integral T>
+    fraction(T numerator, T denominator = 1)
+    : _numerator(numerator), _denominator(denominator) 
+    {
+        if (denominator == 0) {
+            throw std::invalid_argument("Denominator cannot be zero");
+        }
+        optimise();
+    }
 
     fraction(pp_allocator<big_int::value_type> = pp_allocator<big_int::value_type>());
 
@@ -41,6 +64,9 @@ public:
     fraction &operator/=(fraction const &other) &;
 
     fraction operator/(fraction const &other) const;
+
+    fraction abs() const;
+    fraction operator-() const;
 
 public:
 
@@ -99,5 +125,9 @@ public:
     fraction lg(fraction const &epsilon = fraction(1_bi, 1000000_bi)) const;
 
 };
+
+big_int gcd(big_int a, big_int b);
+big_int lcm(const big_int& a, const big_int& b);
+fraction operator*(int lhs, const fraction& rhs);
 
 #endif //MP_OS_FRACTION_H

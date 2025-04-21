@@ -42,28 +42,6 @@ big_int::operator bool() const noexcept
     return !(_digits.size() == 1 && _digits[0] == 0);
 }
 
-big_int &big_int::operator++() &
-{
-    throw not_implemented("big_int &big_int::operator++()", "your code should be here...");
-}
-
-
-big_int big_int::operator++(int)
-{
-    throw not_implemented("big_int big_int::operator++(int)", "your code should be here...");
-}
-
-big_int &big_int::operator--() &
-{
-    throw not_implemented("big_int &big_int::operator--()", "your code should be here...");
-}
-
-
-big_int big_int::operator--(int)
-{
-    throw not_implemented("big_int big_int::operator--(int)", "your code should be here...");
-}
-
 big_int &big_int::operator+=(const big_int &other) &
 {
     if (_sign == other._sign) {
@@ -811,4 +789,26 @@ void big_int::optimize() {
     } else if (_digits.size() == 1 && _digits[0] == 0) {
         _sign = true;
     }
+}
+
+big_int big_int::abs() const & {
+    big_int result = *this;
+    result._sign = true;
+    return result;
+}
+
+big_int big_int::operator-() const & {
+    big_int result = *this;
+    if (result != big_int(0)) {
+        result._sign = !result._sign;
+    }
+    return result;
+}
+
+big_int big_int::operator*(int rhs) const {
+    return *this * big_int(rhs);
+}
+
+big_int operator*(int lhs, const big_int& rhs) {
+    return big_int(lhs) * rhs;
 }

@@ -82,6 +82,18 @@ private:
 
 public:
 
+    // template<std::integral T>
+    // big_int(T value) {
+    //     if (value >= 0) {
+    //         _sign = true;
+    //         _digits.push_back(static_cast<unsigned int>(value));
+    //     } else {
+    //         _sign = false;
+    //         _digits.push_back(static_cast<unsigned int>(-value));
+    //     }
+    //     optimize();
+    // }
+
     using value_type = unsigned int;
 
     template<class alloc>
@@ -170,7 +182,14 @@ public:
     friend std::istream &operator>>(std::istream &stream, big_int &value);
 
     std::string to_string() const;
+    big_int abs() const&;
+    big_int operator-() const&;
+    
+    big_int operator*(int rhs) const;
+    
 };
+
+big_int operator*(int lhs, const big_int& rhs);
 
 // template<class alloc>
 // big_int::big_int(const std::vector<unsigned int, alloc> &digits, bool sign, pp_allocator<unsigned int> allocator)
@@ -210,7 +229,7 @@ big_int::big_int(Num d, pp_allocator<unsigned int> allocator)
     Num val = _sign ? d : -d;
     while (val > 0) {
         _digits.push_back(static_cast<unsigned int>(val & 0xFFFFFFFF));
-        val >>= 32;
+        val >>= sizeof(unsigned int) * 8;
     }
 }
 
