@@ -5,7 +5,8 @@
 		{
 			"compiler" : 
 			{
-				"implicit" : {}
+				"implicit" : {},
+				"path" : "/usr/bin/cc"
 			},
 			"language" : "C"
 		},

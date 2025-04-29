@@ -7,7 +7,7 @@ void fraction::optimise()
         return;
     }
     
-    big_int divisor = gcd(_numerator, _denominator);
+    big_int divisor = gcd(_numerator.abs(), _denominator.abs());
     
     _numerator /= divisor;
     _denominator /= divisor;
@@ -148,7 +148,7 @@ std::istream &operator>>(std::istream &stream, fraction &obj)
     
     size_t slash_pos = input.find('/');
     if (slash_pos != std::string::npos) {
-        // Format: numerator/denominator
+        // numerator/denominator
         std::string num_str = input.substr(0, slash_pos);
         std::string den_str = input.substr(slash_pos + 1);
         
@@ -307,6 +307,81 @@ fraction fraction::arctg(fraction const &epsilon) const {
     return sum;
 }
 
+fraction fraction::arccos(fraction const &epsilon) const {
+    if (*this == fraction(1)) {
+        return fraction(0);
+    }
+    if (*this == fraction(-1)) {
+        fraction pi = fraction(1).arcsin(epsilon) * fraction(2) * fraction(2);
+        return pi;
+    }
+    
+    fraction pi_2 = fraction(1).arcsin(epsilon) * fraction(2);
+    return pi_2 - this->arcsin(epsilon);
+}
+
+fraction fraction::arcctg(fraction const &epsilon) const {
+    fraction x = *this;
+    bool is_reciprocal = false;
+    if (x.abs() > fraction(1)) {
+        x = fraction(1) / x;
+        is_reciprocal = true;
+    }
+
+    fraction sum = x;
+    fraction term = x;
+    big_int n(1);
+    fraction next_term;
+    do {
+        term = term * (-(x * x));
+        next_term = term / fraction(2 * n + 1);
+        sum += next_term;
+        n += 1;
+    } while (next_term.abs() > epsilon);
+
+    if (is_reciprocal) {
+        fraction pi_2 = fraction(1).arcsin(epsilon) * fraction(2);
+        sum = pi_2 - sum;
+    }
+
+    return sum;
+}
+
+fraction fraction::arcsec(fraction const &epsilon) const {
+    if (this->abs() < fraction(1)) {
+        throw std::invalid_argument("arcsec argument must be |x| >= 1");
+    }
+    
+    if (*this == fraction(1)) {
+        return fraction(0);
+    }
+    if (*this == fraction(-1)) {
+        fraction pi = fraction(1).arcsin(epsilon) * fraction(2) * fraction(2);
+        return pi;
+    }
+    
+    fraction inv = fraction(1) / *this;
+    
+    fraction pi_2 = fraction(1).arcsin(epsilon) * fraction(2);
+    return pi_2 - inv.arcsin(epsilon);
+}
+
+fraction fraction::arccosec(fraction const &epsilon) const {
+    if (this->abs() < fraction(1)) {
+        throw std::invalid_argument("arccosec argument must be |x| >= 1");
+    }
+    
+    if (*this == fraction(1)) {
+        return fraction(1).arcsin(epsilon) * fraction(2);
+    }
+    if (*this == fraction(-1)) {
+        return fraction(-1) * fraction(1).arcsin(epsilon) * fraction(2);
+    }
+    
+    fraction inv = fraction(1) / *this;
+    return inv.arcsin(epsilon);
+}
+
 fraction fraction::pow(size_t degree) const
 {
     if (degree == 0) {
@@ -324,38 +399,59 @@ fraction fraction::pow(size_t degree) const
         degree >>= 1;
     }
     
+    result.optimise();
     return result;
 }
 
 fraction fraction::root(size_t degree, fraction const &epsilon) const
 {
-    if (degree == 0) {
+    if (degree == 0) 
+    {
         throw std::invalid_argument("Root degree cannot be zero");
     }
-    if (degree % 2 == 0 && *this < fraction(0)) {
+    if (degree % 2 == 0 && *this < fraction(0)) 
+    {
         throw std::invalid_argument("Even root of negative number");
     }
-    if (*this == fraction(0)) {
+    if (*this == fraction(0)) 
+    {
         return fraction(0);
     }
 
-    bool is_negative = (*this < fraction(0));
     fraction abs_this = this->abs();
-    fraction x_prev = is_negative ? fraction(-1) : fraction(1);
+    fraction x_prev = fraction(1);
     fraction x_next;
 
-    while (true) {
+    while (true) 
+    {
         fraction pow_prev = x_prev.pow(degree - 1);
-        x_next = (x_prev * fraction(degree - 1) + abs_this / pow_prev) / fraction(degree);
-
+        pow_prev.optimise();
+        
+        fraction term = abs_this / pow_prev;
+        term.optimise();
+        
+        x_next = (x_prev * fraction(degree - 1) + term) / fraction(degree);
+        x_next.optimise();
+        
         fraction diff = (x_next - x_prev).abs();
-        if (diff <= epsilon) {
+        diff.optimise();
+
+        fraction rel_diff = diff / x_next.abs();
+        rel_diff.optimise();
+        
+        if (rel_diff <= epsilon || x_next == x_prev) 
+        {
             break;
         }
         x_prev = x_next;
     }
 
-    return x_next;
+    fraction result = x_next;
+    result.optimise();
+
+    //big_int gcd_val = gcd(result._numerator.abs(), result._denominator.abs());
+    
+    return result;
 }
 
 fraction fraction::log2(fraction const &epsilon) const
@@ -395,6 +491,9 @@ fraction fraction::lg(fraction const &epsilon) const
 }
 
 big_int gcd(big_int a, big_int b) {
+    if (a == 0) return b;
+    if (b == 0) return a;
+
     a = a < 0 ? -a : a;
     b = b < 0 ? -b : b;
     

@@ -14,7 +14,7 @@ private:
     big_int _denominator;
 
     void optimise(); //сокращает дробь
-
+    void deep_optimise();
 public:
 
     /** Perfect forwarding ctor
@@ -30,8 +30,9 @@ public:
     : _numerator(std::forward<f>(numerator)), 
       _denominator(std::forward<s>(denominator)) 
     {
-        if (_denominator == 0) 
+        if (_denominator == 0) {
             throw std::invalid_argument("Denominator cannot be zero");
+        }
         optimise();
     }
 

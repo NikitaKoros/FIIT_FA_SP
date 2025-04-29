@@ -592,7 +592,7 @@ arithmetic/fraction/clean: arithmetic/fraction/tests/clean
 # Directory level rules for directory arithmetic/fraction/tests
 
 # Recursive "all" directory target.
-arithmetic/fraction/tests/all:
+arithmetic/fraction/tests/all: arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all
 .PHONY : arithmetic/fraction/tests/all
 
 # Recursive "preinstall" directory target.
@@ -600,7 +600,7 @@ arithmetic/fraction/tests/preinstall:
 .PHONY : arithmetic/fraction/tests/preinstall
 
 # Recursive "clean" directory target.
-arithmetic/fraction/tests/clean:
+arithmetic/fraction/tests/clean: arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/clean
 .PHONY : arithmetic/fraction/tests/clean
 
 #=============================================================================
@@ -1163,7 +1163,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-bui
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
@@ -1190,7 +1190,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletes
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule
@@ -1211,12 +1211,12 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=4,5 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=4 "Built target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
@@ -1237,7 +1237,7 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=6 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=5,6 "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1263,12 +1263,12 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/all:
 	$(MAKE) $(MAKESILENT) -f allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/build.make allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/build.make allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=7,8,9,10 "Built target mp_os_allctr_allctr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=7,8,9 "Built target mp_os_allctr_allctr"
 .PHONY : allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/rule
@@ -1291,12 +1291,12 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/al
 allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/build.make allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/build.make allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=14,15 "Built target mp_os_allctr_allctr_bndr_tgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=14 "Built target mp_os_allctr_allctr_bndr_tgs"
 .PHONY : allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/rule
@@ -1323,12 +1323,12 @@ allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_
 allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/build.make allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/build.make allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=16 "Built target mp_os_allctr_allctr_bndr_tgs_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=15,16 "Built target mp_os_allctr_allctr_bndr_tgs_tests"
 .PHONY : allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_boundary_tags/tests/CMakeFiles/mp_os_allctr_allctr_bndr_tgs_tests.dir/rule
@@ -1351,12 +1351,12 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/build.make allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/build.make allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=11 "Built target mp_os_allctr_allctr_bdds_sstm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=10,11 "Built target mp_os_allctr_allctr_bdds_sstm"
 .PHONY : allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/rule
@@ -1443,12 +1443,12 @@ allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tes
 allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/build.make allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/build.make allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=19,20 "Built target mp_os_allctr_allctr_glbl_hp_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=19 "Built target mp_os_allctr_allctr_glbl_hp_tests"
 .PHONY : allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_global_heap/tests/CMakeFiles/mp_os_allctr_allctr_glbl_hp_tests.dir/rule
@@ -1471,12 +1471,12 @@ allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/all:
 allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/build.make allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/build.make allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=21 "Built target mp_os_allctr_allctr_rb_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=20,21 "Built target mp_os_allctr_allctr_rb_tr"
 .PHONY : allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_red_black_tree/CMakeFiles/mp_os_allctr_allctr_rb_tr.dir/rule
@@ -1503,12 +1503,12 @@ allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_te
 allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/build.make allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/build.make allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=22,23 "Built target mp_os_allctr_allctr_rb_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=22 "Built target mp_os_allctr_allctr_rb_tr_tests"
 .PHONY : allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : allocator/allocator_red_black_tree/tests/CMakeFiles/mp_os_allctr_allctr_rb_tr_tests.dir/rule
@@ -1531,7 +1531,7 @@ allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/all:
 allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/build.make allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/build.make allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=24,25 "Built target mp_os_allctr_allctr_srtd_lst"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=23,24 "Built target mp_os_allctr_allctr_srtd_lst"
 .PHONY : allocator/allocator_sorted_list/CMakeFiles/mp_os_allctr_allctr_srtd_lst.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1563,7 +1563,7 @@ allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_te
 allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/build.make allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/build.make allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=26 "Built target mp_os_allctr_allctr_srtd_lst_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=25,26 "Built target mp_os_allctr_allctr_srtd_lst_tests"
 .PHONY : allocator/allocator_sorted_list/tests/CMakeFiles/mp_os_allctr_allctr_srtd_lst_tests.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1590,12 +1590,12 @@ arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/all: allocator/allo
 arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/all: common/CMakeFiles/mp_os_cmmn.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/build.make arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/build.make arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=27,28 "Built target mp_os_arthmtc_bg_intgr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=27 "Built target mp_os_arthmtc_bg_intgr"
 .PHONY : arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/rule
@@ -1622,12 +1622,12 @@ arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests
 arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/build.make arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/build.make arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=36 "Built target mp_os_arthmtc_bg_intgr_tests_bgnt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=35,36 "Built target mp_os_arthmtc_bg_intgr_tests_bgnt"
 .PHONY : arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_bgnt.dir/rule
@@ -1654,12 +1654,12 @@ arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_
 arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/build.make arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/build.make arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=29,30 "Built target mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=28,29 "Built target mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn"
 .PHONY : arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/Burnikel_Ziegler_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn.dir/rule
@@ -1686,12 +1686,12 @@ arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_b
 arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/build.make arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/build.make arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=31 "Built target mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=30,31 "Built target mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn"
 .PHONY : arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/Karatsuba_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn.dir/rule
@@ -1718,12 +1718,12 @@ arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_t
 arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/build.make arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/build.make arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=32,33 "Built target mp_os_arthmtc_bg_intgr_tests_Newton_dvsn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=32 "Built target mp_os_arthmtc_bg_intgr_tests_Newton_dvsn"
 .PHONY : arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/Newton_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Newton_dvsn.dir/rule
@@ -1750,12 +1750,12 @@ arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_
 arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/build.make arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/build.make arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=34,35 "Built target mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=33,34 "Built target mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen"
 .PHONY : arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/Schonhage_Strassen_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen.dir/rule
@@ -1782,12 +1782,12 @@ arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_
 arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/build.make arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/build.make arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=37,38 "Built target mp_os_arthmtc_bg_intgr_tests_trvl_dvsn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=37 "Built target mp_os_arthmtc_bg_intgr_tests_trvl_dvsn"
 .PHONY : arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/trivial_division/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.dir/rule
@@ -1814,12 +1814,12 @@ arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_
 arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/build.make arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/build.make arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=39,40 "Built target mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=38,39 "Built target mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn"
 .PHONY : arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/big_integer/tests/trivial_multiplication/CMakeFiles/mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.dir/rule
@@ -1843,12 +1843,12 @@ arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/all: arit
 arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/all: common/CMakeFiles/mp_os_cmmn.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/build.make arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/build.make arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=41 "Built target mp_os_arthmtc_cntnd_frctn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=40 "Built target mp_os_arthmtc_cntnd_frctn"
 .PHONY : arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/continued_fraction/CMakeFiles/mp_os_arthmtc_cntnd_frctn.dir/rule
@@ -1871,12 +1871,12 @@ arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/all: arithmetic/big_integ
 arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/all: common/CMakeFiles/mp_os_cmmn.dir/all
 	$(MAKE) $(MAKESILENT) -f arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/build.make arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/depend
 	$(MAKE) $(MAKESILENT) -f arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/build.make arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=42,43 "Built target mp_os_arthmtc_frctn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=41,42 "Built target mp_os_arthmtc_frctn"
 .PHONY : arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/all
 
 # Build rule for subdir invocation for target.
 arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/rule
@@ -1891,13 +1891,46 @@ arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/clean:
 .PHONY : arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/clean
 
 #=============================================================================
+# Target rules for target arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir
+
+# All Build rule for target.
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: allocator/allocator/CMakeFiles/mp_os_allctr_allctr.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: arithmetic/big_integer/CMakeFiles/mp_os_arthmtc_bg_intgr.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: arithmetic/fraction/CMakeFiles/mp_os_arthmtc_frctn.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: common/CMakeFiles/mp_os_cmmn.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/all
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
+	$(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/depend
+	$(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=43,44 "Built target mp_os_arthmtc_frctn_tests_frctn"
+.PHONY : arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all
+
+# Build rule for subdir invocation for target.
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
+.PHONY : arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule
+
+# Convenience name for target.
+mp_os_arthmtc_frctn_tests_frctn: arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule
+.PHONY : mp_os_arthmtc_frctn_tests_frctn
+
+# clean rule for target.
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/clean:
+	$(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/clean
+.PHONY : arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/clean
+
+#=============================================================================
 # Target rules for target associative_container/CMakeFiles/mp_os_assctv_cntnr.dir
 
 # All Build rule for target.
 associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/all: common/CMakeFiles/mp_os_cmmn.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/build.make associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/build.make associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=44,45 "Built target mp_os_assctv_cntnr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=45 "Built target mp_os_assctv_cntnr"
 .PHONY : associative_container/CMakeFiles/mp_os_assctv_cntnr.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1926,7 +1959,7 @@ associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/all: 
 associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/build.make associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/build.make associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=46 "Built target mp_os_assctv_cntnr_hsh_tbl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=46,47 "Built target mp_os_assctv_cntnr_hsh_tbl"
 .PHONY : associative_container/hash_table/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1959,12 +1992,12 @@ associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tes
 associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/build.make associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/build.make associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=47,48 "Built target mp_os_assctv_cntnr_hsh_tbl_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=48,49 "Built target mp_os_assctv_cntnr_hsh_tbl_tests"
 .PHONY : associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/hash_table/tests/CMakeFiles/mp_os_assctv_cntnr_hsh_tbl_tests.dir/rule
@@ -1988,12 +2021,12 @@ associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/all:
 associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/build.make associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/build.make associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=49,50 "Built target mp_os_assctv_cntnr_srch_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=50 "Built target mp_os_assctv_cntnr_srch_tr"
 .PHONY : associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr.dir/rule
@@ -2018,12 +2051,12 @@ associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cnt
 associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/build.make associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/build.make associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=51 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=51,52 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr"
 .PHONY : associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr.dir/rule
@@ -2049,12 +2082,12 @@ associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_a
 associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/build.make associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/build.make associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=52,53 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=53,54 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr"
 .PHONY : associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/AVL_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr.dir/rule
@@ -2084,12 +2117,12 @@ associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/m
 associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=54,55 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=55 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests"
 .PHONY : associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/AVL_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.dir/rule
@@ -2115,7 +2148,7 @@ associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/m
 associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/build.make associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/build.make associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=56 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=56,57 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr"
 .PHONY : associative_container/search_tree/binary_search_tree/red_black_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2151,12 +2184,12 @@ associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeF
 associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=57,58 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=58,59 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests"
 .PHONY : associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 24
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/red_black_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.dir/rule
@@ -2182,12 +2215,12 @@ associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/m
 associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/build.make associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/build.make associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=59,60 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=60 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr"
 .PHONY : associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr.dir/rule
@@ -2218,12 +2251,12 @@ associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeF
 associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=61 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=61,62 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests"
 .PHONY : associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 23
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/scapegoat_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr_tests.dir/rule
@@ -2249,12 +2282,12 @@ associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os
 associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/build.make associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/build.make associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=62,63 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=63 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr"
 .PHONY : associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/splay_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr.dir/rule
@@ -2290,7 +2323,7 @@ associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeFiles
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr_tests.dir/rule
@@ -2320,12 +2353,12 @@ associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assc
 associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/build.make associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=66 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=66,67 "Built target mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests"
 .PHONY : associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 23
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/binary_search_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.dir/rule
@@ -2351,12 +2384,12 @@ associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_ass
 associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/build.make associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/build.make associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=67,68 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=68 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr"
 .PHONY : associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr.dir/rule
@@ -2390,7 +2423,7 @@ associative_container/search_tree/indexing_tree/b_plus_tree/tests/CMakeFiles/mp_
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 23
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_pls_tr_tests.dir/rule
@@ -2416,12 +2449,12 @@ associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_o
 associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/build.make associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/build.make associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=71 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=71,72 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr"
 .PHONY : associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr.dir/rule
@@ -2450,12 +2483,12 @@ associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFile
 associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/build.make associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/build.make associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=72,73 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=73 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests"
 .PHONY : associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_star_plus_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr_tests.dir/rule
@@ -2486,7 +2519,7 @@ associative_container/search_tree/indexing_tree/b_star_tree/CMakeFiles/mp_os_ass
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_star_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_star_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_star_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr.dir/rule
@@ -2515,12 +2548,12 @@ associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_
 associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/build.make associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/build.make associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=76 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=76,77 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests"
 .PHONY : associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_star_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr_tests.dir/rule
@@ -2546,12 +2579,12 @@ associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_c
 associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/build.make associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/depend
 	$(MAKE) $(MAKESILENT) -f associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/build.make associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=77,78 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=78 "Built target mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr"
 .PHONY : associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/all
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_tree/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr.dir/rule
@@ -2585,7 +2618,7 @@ associative_container/search_tree/indexing_tree/b_tree/tests/CMakeFiles/mp_os_as
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 23
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_tree/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_tests.dir/rule
@@ -2616,7 +2649,7 @@ associative_container/search_tree/indexing_tree/b_tree_disk/CMakeFiles/mp_os_ass
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_tree_disk/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_tree_disk/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_tree_disk/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk.dir/rule
@@ -2650,7 +2683,7 @@ associative_container/search_tree/indexing_tree/b_tree_disk/tests/CMakeFiles/mp_
 
 # Build rule for subdir invocation for target.
 associative_container/search_tree/indexing_tree/b_tree_disk/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 associative_container/search_tree/indexing_tree/b_tree_disk/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : associative_container/search_tree/indexing_tree/b_tree_disk/tests/CMakeFiles/mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_dsk_tests.dir/rule
@@ -2671,12 +2704,12 @@ associative_container/search_tree/indexing_tree/b_tree_disk/tests/CMakeFiles/mp_
 common/CMakeFiles/mp_os_cmmn.dir/all:
 	$(MAKE) $(MAKESILENT) -f common/CMakeFiles/mp_os_cmmn.dir/build.make common/CMakeFiles/mp_os_cmmn.dir/depend
 	$(MAKE) $(MAKESILENT) -f common/CMakeFiles/mp_os_cmmn.dir/build.make common/CMakeFiles/mp_os_cmmn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=84,85 "Built target mp_os_cmmn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=84,85,86 "Built target mp_os_cmmn"
 .PHONY : common/CMakeFiles/mp_os_cmmn.dir/all
 
 # Build rule for subdir invocation for target.
 common/CMakeFiles/mp_os_cmmn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 common/CMakeFiles/mp_os_cmmn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : common/CMakeFiles/mp_os_cmmn.dir/rule
@@ -2698,7 +2731,7 @@ logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/all: common/CMakeFiles/
 logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/all: logger/logger/CMakeFiles/mp_os_lggr_lggr.dir/all
 	$(MAKE) $(MAKESILENT) -f logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/build.make logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/depend
 	$(MAKE) $(MAKESILENT) -f logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/build.make logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=86,87,88 "Built target mp_os_lggr_clnt_lggr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=87,88 "Built target mp_os_lggr_clnt_lggr"
 .PHONY : logger/client_logger/CMakeFiles/mp_os_lggr_clnt_lggr.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2786,7 +2819,7 @@ logger/server_logger/CMakeFiles/mp_os_lggr_srvr_lggr.dir/all: logger/logger/CMak
 
 # Build rule for subdir invocation for target.
 logger/server_logger/CMakeFiles/mp_os_lggr_srvr_lggr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 logger/server_logger/CMakeFiles/mp_os_lggr_srvr_lggr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : logger/server_logger/CMakeFiles/mp_os_lggr_srvr_lggr.dir/rule
@@ -2816,7 +2849,7 @@ logger/server_logger/tests/CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/all: logger
 
 # Build rule for subdir invocation for target.
 logger/server_logger/tests/CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 logger/server_logger/tests/CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : logger/server_logger/tests/CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/rule
@@ -2846,7 +2879,7 @@ logger/server_logger/tests/CMakeFiles/serv_test.dir/all: logger/server_logger/CM
 
 # Build rule for subdir invocation for target.
 logger/server_logger/tests/CMakeFiles/serv_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 logger/server_logger/tests/CMakeFiles/serv_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles 0
 .PHONY : logger/server_logger/tests/CMakeFiles/serv_test.dir/rule

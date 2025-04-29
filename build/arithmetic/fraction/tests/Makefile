@@ -118,6 +118,18 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles /home/nikita/university/fiit/FIIT_FA_SP/build/arithmetic/fraction/tests//CMakeFiles/progress.marks
@@ -149,6 +161,44 @@ depend:
 	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule:
+	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule
+.PHONY : arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule
+
+# Convenience name for target.
+mp_os_arthmtc_frctn_tests_frctn: arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/rule
+.PHONY : mp_os_arthmtc_frctn_tests_frctn
+
+# fast build rule for target.
+mp_os_arthmtc_frctn_tests_frctn/fast:
+	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build
+.PHONY : mp_os_arthmtc_frctn_tests_frctn/fast
+
+fraction_tests.o: fraction_tests.cpp.o
+.PHONY : fraction_tests.o
+
+# target to build an object file
+fraction_tests.cpp.o:
+	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/fraction_tests.cpp.o
+.PHONY : fraction_tests.cpp.o
+
+fraction_tests.i: fraction_tests.cpp.i
+.PHONY : fraction_tests.i
+
+# target to preprocess a source file
+fraction_tests.cpp.i:
+	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/fraction_tests.cpp.i
+.PHONY : fraction_tests.cpp.i
+
+fraction_tests.s: fraction_tests.cpp.s
+.PHONY : fraction_tests.s
+
+# target to generate assembly for a file
+fraction_tests.cpp.s:
+	cd /home/nikita/university/fiit/FIIT_FA_SP/build && $(MAKE) $(MAKESILENT) -f arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/build.make arithmetic/fraction/tests/CMakeFiles/mp_os_arthmtc_frctn_tests_frctn.dir/fraction_tests.cpp.s
+.PHONY : fraction_tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,8 +208,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... mp_os_arthmtc_frctn_tests_frctn"
+	@echo "... fraction_tests.o"
+	@echo "... fraction_tests.i"
+	@echo "... fraction_tests.s"
 .PHONY : help
 
 

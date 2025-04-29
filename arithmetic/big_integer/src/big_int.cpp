@@ -8,7 +8,7 @@
 #include <string>
 #include <sstream>
 #include <cmath>
-#include <algorithm>
+#include <algorithm> 
 
 std::strong_ordering big_int::operator<=>(const big_int &other) const noexcept
 {
@@ -168,53 +168,53 @@ big_int big_int::operator~() const
     return result;
 }
 
-big_int &big_int::operator&=(const big_int &other) &
-{
-    size_t max_size = std::max(_digits.size(), other._digits.size());
-    _digits.resize(max_size, _sign ? 0 : 0xFFFFFFFF);
-    
+big_int& big_int::operator&=(const big_int& other) & {
+    big_int a = this->to_twos_complement();
+    big_int b = other.to_twos_complement();
+
+    size_t max_size = std::max(a._digits.size(), b._digits.size());
+    a._digits.resize(max_size, a._sign ? 0 : 0xFFFFFFFF);
+    b._digits.resize(max_size, b._sign ? 0 : 0xFFFFFFFF);
+
     for (size_t i = 0; i < max_size; ++i) {
-        unsigned int this_digit = i < _digits.size() ? _digits[i] : (_sign ? 0 : 0xFFFFFFFF);
-        unsigned int other_digit = i < other._digits.size() ? other._digits[i] : (other._sign ? 0 : 0xFFFFFFFF);
-        _digits[i] = this_digit & other_digit;
+        a._digits[i] &= b._digits[i];
     }
-    
-    _sign = _sign && other._sign;
-    
+
+    *this = a.from_twos_complement();
     optimize();
     return *this;
 }
 
-big_int &big_int::operator|=(const big_int &other) &
-{
-    size_t max_size = std::max(_digits.size(), other._digits.size());
-    _digits.resize(max_size, _sign ? 0 : 0xFFFFFFFF);
-    
+big_int& big_int::operator|=(const big_int& other) & {
+    big_int a = this->to_twos_complement();
+    big_int b = other.to_twos_complement();
+
+    size_t max_size = std::max(a._digits.size(), b._digits.size());
+    a._digits.resize(max_size, a._sign ? 0 : 0xFFFFFFFF);
+    b._digits.resize(max_size, b._sign ? 0 : 0xFFFFFFFF);
+
     for (size_t i = 0; i < max_size; ++i) {
-        unsigned int this_digit = i < _digits.size() ? _digits[i] : (_sign ? 0 : 0xFFFFFFFF);
-        unsigned int other_digit = i < other._digits.size() ? other._digits[i] : (other._sign ? 0 : 0xFFFFFFFF);
-        _digits[i] = this_digit | other_digit;
+        a._digits[i] |= b._digits[i];
     }
-    
-    _sign = _sign || other._sign;
-    
+
+    *this = a.from_twos_complement();
     optimize();
     return *this;
 }
 
-big_int &big_int::operator^=(const big_int &other) &
-{
-    size_t max_size = std::max(_digits.size(), other._digits.size());
-    _digits.resize(max_size, _sign ? 0 : 0xFFFFFFFF);
-    
+big_int& big_int::operator^=(const big_int& other) & {
+    big_int a = this->to_twos_complement();
+    big_int b = other.to_twos_complement();
+
+    size_t max_size = std::max(a._digits.size(), b._digits.size());
+    a._digits.resize(max_size, a._sign ? 0 : 0xFFFFFFFF);
+    b._digits.resize(max_size, b._sign ? 0 : 0xFFFFFFFF);
+
     for (size_t i = 0; i < max_size; ++i) {
-        unsigned int this_digit = i < _digits.size() ? _digits[i] : (_sign ? 0 : 0xFFFFFFFF);
-        unsigned int other_digit = i < other._digits.size() ? other._digits[i] : (other._sign ? 0 : 0xFFFFFFFF);
-        _digits[i] = this_digit ^ other_digit;
+        a._digits[i] ^= b._digits[i];
     }
-    
-    _sign = _sign ^ other._sign;
-    
+
+    *this = a.from_twos_complement();
     optimize();
     return *this;
 }
