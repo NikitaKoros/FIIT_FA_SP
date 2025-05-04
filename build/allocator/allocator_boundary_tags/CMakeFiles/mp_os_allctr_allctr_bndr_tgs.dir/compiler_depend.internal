@@ -110,6 +110,7 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
  /usr/include/c++/13/cstdint
  /usr/include/c++/13/cstdio
  /usr/include/c++/13/cstdlib
+ /usr/include/c++/13/cstring
  /usr/include/c++/13/ctime
  /usr/include/c++/13/cwchar
  /usr/include/c++/13/cwctype
@@ -167,6 +168,8 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
  /usr/include/stdint.h
  /usr/include/stdio.h
  /usr/include/stdlib.h
+ /usr/include/string.h
+ /usr/include/strings.h
  /usr/include/syscall.h
  /usr/include/time.h
  /usr/include/unistd.h

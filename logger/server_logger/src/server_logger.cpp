@@ -10,20 +10,50 @@
 
 server_logger::~server_logger() noexcept
 {
-    throw not_implemented("server_logger::~server_logger() noexcept", "your code should be here...");
+    _client.stop();
 }
 
 logger& server_logger::log(
-    const std::string &text,
+    const std::string &message,
     logger::severity severity) &
 {
-    throw not_implemented("const logger& server_logger::log(const std::string &, logger::severity) const &", "your code should be here...");
+    auto it = _streams.find(severity);
+    if (it == _streams.end()) return *this;
+
+    std::string formatted = format_message(message, severity);
+    
+    httplib::Params params;
+    params.emplace("pid", std::to_string(inner_getpid()));
+    params.emplace("sev", logger::severity_to_string(severity));
+    params.emplace("message", formatted);
+
+    httplib::Result res = _client.Post("/log", params);
+
+    return *this;
 }
 
 server_logger::server_logger(const std::string& dest,
-                             const std::unordered_map<logger::severity, std::pair<std::string, bool>> &streams)
+                             const std::unordered_map<logger::severity, std::vector<std::pair<std::string, bool>>> &streams,
+                            std::string const &format) :
+                             _client(dest)
+                            , _streams(streams)
+                            , _format(format)
 {
-    throw not_implemented("server_logger::server_logger(const std::string& ,const std::unordered_map<logger::severity, std::pair<std::string, bool>> &)", "your code should be here...");
+    int pid = inner_getpid();
+    for (const auto& [sev, streams_list] : _streams) 
+    {
+        for (const auto& stream : streams_list) 
+        {
+            httplib::Params init_params;
+            init_params.emplace("pid", std::to_string(pid));
+            init_params.emplace("sev", logger::severity_to_string(sev));
+            init_params.emplace("path", stream.first);
+            init_params.emplace("console", stream.second ? "1" : "0");
+
+            _client.Post("/init", init_params);
+        }
+    }
+
 }
 
 int server_logger::inner_getpid()
@@ -35,22 +65,36 @@ int server_logger::inner_getpid()
 #endif
 }
 
-server_logger::server_logger(const server_logger &other)
+std::string server_logger::format_message(
+    std::string const &message,
+    logger::severity severity) const
 {
-    throw not_implemented("server_logger::server_logger(const server_logger &other)", "your code should be here...");
-}
+    std::time_t now = std::time(nullptr);
+    std::tm *gmt = std::gmtime(&now);
+    std::ostringstream ss;
 
-server_logger &server_logger::operator=(const server_logger &other)
-{
-    throw not_implemented("server_logger &server_logger::operator=(const server_logger &other)", "your code should be here...");
-}
+    for (size_t i = 0; i < _format.size(); ++i) {
+        if (_format[i] == '%' && i + 1 < _format.size()) {
+            switch (_format[++i]) {
+                case 'd':
+                    ss << std::put_time(gmt, "%Y-%m-%d");
+                    break;
+                case 't':
+                    ss << std::put_time(gmt, "%H:%M:%S");
+                    break;
+                case 's':
+                    ss << logger::severity_to_string(severity); // Исправлено здесь
+                    break;
+                case 'm':
+                    ss << message;
+                    break;
+                default:
+                    ss << '%' << _format[i];
+            }
+        } else {
+            ss << _format[i];
+        }
+    }
 
-server_logger::server_logger(server_logger &&other) noexcept
-{
-    throw not_implemented("server_logger::server_logger(server_logger &&other) noexcept", "your code should be here...");
-}
-
-server_logger &server_logger::operator=(server_logger &&other) noexcept
-{
-    throw not_implemented("server_logger &server_logger::operator=(server_logger &&other) noexcept", "your code should be here...");
+    return ss.str();
 }

@@ -27,7 +27,7 @@ logger *create_logger(
     return logger_instance;
 }
 
-//TODO: recalculate size
+// TODO: recalculate size
 
 TEST(positiveTests, test1)
 {
@@ -38,7 +38,7 @@ TEST(positiveTests, test1)
                 logger::severity::information
             }
         }));
-    std::unique_ptr<smart_mem_resource> subject(new allocator_boundary_tags(sizeof(int) * 70, nullptr, logger.get(), allocator_with_fit_mode::fit_mode::first_fit));
+    std::unique_ptr<smart_mem_resource> subject(new allocator_boundary_tags(sizeof(int) * 74, nullptr, logger.get(), allocator_with_fit_mode::fit_mode::first_fit));
     
     auto *first_block = reinterpret_cast<int *>(subject->allocate(sizeof(int) * 10));
     auto *second_block = reinterpret_cast<int *>(subject->allocate(sizeof(int) * 10));

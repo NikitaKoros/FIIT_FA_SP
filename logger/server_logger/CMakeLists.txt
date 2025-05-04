@@ -22,4 +22,12 @@ target_link_libraries(
 target_link_libraries(
         mp_os_lggr_srvr_lggr
         PUBLIC
-        nlohmann_json::nlohmann_json)
+        nlohmann_json::nlohmann_json
+        httplib::httplib
+        )
+
+target_include_directories(
+        mp_os_lggr_srvr_lggr
+        PUBLIC
+        ./include
+    )

@@ -97,6 +97,12 @@ logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: logger/server_logger/libm
 logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: lib/libgtest.a
 logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: common/libmp_os_cmmn.a
 logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: logger/logger/libmp_os_lggr_lggr.a
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlienc.a
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlidec.a
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlicommon.a
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /usr/lib/x86_64-linux-gnu/libm.so
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libssl.a
+logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libcrypto.a
 logger/server_logger/tests/mp_os_lggr_srvr_lggr_tests: logger/server_logger/tests/CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mp_os_lggr_srvr_lggr_tests"
 	cd /home/nikita/university/fiit/FIIT_FA_SP/build/logger/server_logger/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mp_os_lggr_srvr_lggr_tests.dir/link.txt --verbose=$(VERBOSE)

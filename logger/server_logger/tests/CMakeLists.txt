@@ -10,7 +10,8 @@ target_link_libraries(
 target_link_libraries(
         mp_os_lggr_srvr_lggr_tests
         PRIVATE
-        mp_os_lggr_srvr_lggr)
+        mp_os_lggr_srvr_lggr
+        )
 
 add_executable(
         serv_test
@@ -26,4 +27,5 @@ target_link_libraries(
 target_link_libraries(
         serv_test
         PRIVATE
-        mp_os_lggr_srvr_lggr)
+        mp_os_lggr_srvr_lggr
+    )

@@ -113,6 +113,12 @@ logger/server_logger/tests/serv_test: logger/server_logger/libmp_os_lggr_srvr_lg
 logger/server_logger/tests/serv_test: lib/libgtest.a
 logger/server_logger/tests/serv_test: common/libmp_os_cmmn.a
 logger/server_logger/tests/serv_test: logger/logger/libmp_os_lggr_lggr.a
+logger/server_logger/tests/serv_test: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlienc.a
+logger/server_logger/tests/serv_test: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlidec.a
+logger/server_logger/tests/serv_test: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libbrotlicommon.a
+logger/server_logger/tests/serv_test: /usr/lib/x86_64-linux-gnu/libm.so
+logger/server_logger/tests/serv_test: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libssl.a
+logger/server_logger/tests/serv_test: /home/nikita/vcpkg/installed/x64-linux/debug/lib/libcrypto.a
 logger/server_logger/tests/serv_test: logger/server_logger/tests/CMakeFiles/serv_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nikita/university/fiit/FIIT_FA_SP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable serv_test"
 	cd /home/nikita/university/fiit/FIIT_FA_SP/build/logger/server_logger/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/serv_test.dir/link.txt --verbose=$(VERBOSE)

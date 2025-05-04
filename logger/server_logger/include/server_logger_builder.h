@@ -5,17 +5,21 @@
 #include <unordered_map>
 #include "server_logger.h"
 
+
 class server_logger_builder final:
     public logger_builder
 {
 
     std::string _destination;
 
-    std::unordered_map<logger::severity ,std::pair<std::string, bool>> _output_streams;
+    std::unordered_map<logger::severity, std::vector<std::pair<std::string, bool>>> _output_streams;
 
+    std::string _format;
 public:
 
-    server_logger_builder() : _destination("http://127.0.0.1:9200"){}
+    server_logger_builder() : 
+    _destination("http://127.0.0.1:9200"),
+    _format("%d %t %s %m"){}
 
 public:
 

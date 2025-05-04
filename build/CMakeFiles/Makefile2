@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = /home/nikita/university/fiit/FIIT_FA_SP/build
 # The main recursive "all" target.
 all: _deps/googletest-build/all
 all: _deps/nlohmann_json-build/all
+all: _deps/cpp-httplib-build/all
 all: allocator/all
 all: arithmetic/all
 all: associative_container/all
@@ -75,6 +76,7 @@ all: logger/all
 # The main recursive "preinstall" target.
 preinstall: _deps/googletest-build/preinstall
 preinstall: _deps/nlohmann_json-build/preinstall
+preinstall: _deps/cpp-httplib-build/preinstall
 preinstall: allocator/preinstall
 preinstall: arithmetic/preinstall
 preinstall: associative_container/preinstall
@@ -85,12 +87,28 @@ preinstall: logger/preinstall
 # The main recursive "clean" target.
 clean: _deps/googletest-build/clean
 clean: _deps/nlohmann_json-build/clean
+clean: _deps/cpp-httplib-build/clean
 clean: allocator/clean
 clean: arithmetic/clean
 clean: associative_container/clean
 clean: common/clean
 clean: logger/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory _deps/cpp-httplib-build
+
+# Recursive "all" directory target.
+_deps/cpp-httplib-build/all:
+.PHONY : _deps/cpp-httplib-build/all
+
+# Recursive "preinstall" directory target.
+_deps/cpp-httplib-build/preinstall:
+.PHONY : _deps/cpp-httplib-build/preinstall
+
+# Recursive "clean" directory target.
+_deps/cpp-httplib-build/clean:
+.PHONY : _deps/cpp-httplib-build/clean
 
 #=============================================================================
 # Directory level rules for directory _deps/googletest-build

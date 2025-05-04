@@ -3,29 +3,38 @@
 
 #include <logger.h>
 #include <unordered_map>
-// #include <httplib.h>
+#include <httplib.h>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
 
 class server_logger_builder;
 class server_logger final:
     public logger
 {
 
-    // httplib::Client _client;
+    httplib::Client _client;
+    std::string _format;
+    std::string _dest;
+    std::unordered_map<severity, std::vector<std::pair<std::string, bool>>> _streams;
 
-    server_logger(const std::string& dest, const std::unordered_map<logger::severity ,std::pair<std::string, bool>>& streams);
+    server_logger(const std::string& dest, const std::unordered_map<logger::severity, std::vector<std::pair<std::string, bool>>>& streams, std::string const & format);
 
     friend server_logger_builder;
+
+    std::string format_message(std::string const &message, severity severity) const;
 
     static int inner_getpid();
 public:
 
-    server_logger(server_logger const &other);
+    server_logger(server_logger const &other) = delete;
 
-    server_logger &operator=(server_logger const &other);
+    server_logger &operator=(server_logger const &other) = delete;
 
-    server_logger(server_logger &&other) noexcept;
+    server_logger(server_logger &&other) noexcept = delete;
 
-    server_logger &operator=(server_logger &&other) noexcept;
+    server_logger &operator=(server_logger &&other) noexcept = delete;
 
     ~server_logger() noexcept final;
 
