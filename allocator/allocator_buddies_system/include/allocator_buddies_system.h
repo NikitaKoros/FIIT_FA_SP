@@ -70,32 +70,29 @@ private:
     static constexpr size_t free_block_metadata_size = 
         sizeof(block_metadata);
 
-    // 2) Минимальный степенной размер k, достаточный для occupied_block_metadata_size
     static constexpr size_t min_k = 
         __detail::nearest_greater_k_of_2(occupied_block_metadata_size);
 
-    // 3) Сколько байт “сырых” префиксных метаданных у вас до мьютекса
     static constexpr size_t meta_prefix_size =
         sizeof(logger*) 
       + sizeof(std::pmr::memory_resource*) 
       + sizeof(fit_mode) 
       + sizeof(unsigned char);
 
-    // 4) Выравниваем под alignof(std::mutex)
     static constexpr size_t meta_mutex_offset =
         ((meta_prefix_size + alignof(std::mutex) - 1)
          / alignof(std::mutex))
         * alignof(std::mutex);
 
-    // 5) Сколько байт занимает “сырый” хедер вместе с мьютексом
     static constexpr size_t raw_meta_size =
         meta_mutex_offset
       + sizeof(std::mutex);
 
-    // 6) Округляем вверх до границы минимального блока (1<<min_k)
-    static constexpr size_t allocator_metadata_size =
-        ((raw_meta_size + ((1ULL << min_k) - 1)) / (1ULL << min_k))
-      * (1ULL << min_k);
+    // static constexpr size_t allocator_metadata_size =
+    //     ((raw_meta_size + ((1ULL << min_k) - 1)) / (1ULL << min_k))
+    //   * (1ULL << min_k);
+
+    size_t _meta_size;
 
 public:
 

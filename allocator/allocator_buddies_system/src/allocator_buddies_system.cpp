@@ -93,13 +93,22 @@ allocator_buddies_system::allocator_buddies_system(
           ? parent_allocator
           : std::pmr::get_default_resource();
 
-    const size_t region_size = 1ULL << space_size;
-    const size_t total_size  = allocator_metadata_size + region_size;
+          const size_t region_size = 1ULL << space_size;
+          const size_t raw_meta_size = meta_mutex_offset + sizeof(std::mutex);
+          const size_t total_size = raw_meta_size + region_size;
+
 
     _trusted_memory = actual_parent->allocate(total_size);
 
     char *raw = static_cast<char*>(_trusted_memory);
     std::memset(raw, 0, total_size);
+
+    {
+        uintptr_t raw_addr = reinterpret_cast<uintptr_t>(raw);
+        size_t mis = (raw_addr + raw_meta_size) % region_size;
+        size_t padding = mis == 0 ? 0 : (region_size - mis);
+        _meta_size = raw_meta_size + padding;
+    }
 
     char *meta = raw;
 
@@ -118,16 +127,16 @@ allocator_buddies_system::allocator_buddies_system(
     // new (meta) std::mutex();
 
     *reinterpret_cast<logger**>(meta) = log;            meta += sizeof(logger*);
-*reinterpret_cast<std::pmr::memory_resource**>(meta) = actual_parent; meta += sizeof(std::pmr::memory_resource*);
-*reinterpret_cast<fit_mode*>(meta) = allocate_fit_mode;  meta += sizeof(fit_mode);
-*reinterpret_cast<unsigned char*>(meta) = static_cast<unsigned char>(space_size);
+    *reinterpret_cast<std::pmr::memory_resource**>(meta) = actual_parent; meta += sizeof(std::pmr::memory_resource*);
+    *reinterpret_cast<fit_mode*>(meta) = allocate_fit_mode;  meta += sizeof(fit_mode);
+    *reinterpret_cast<unsigned char*>(meta) = static_cast<unsigned char>(space_size);
 
 
 void* mutex_addr = raw + meta_mutex_offset;
 new (mutex_addr) std::mutex();
 
     auto *first_blk = reinterpret_cast<block_metadata*>(
-        static_cast<char*>(_trusted_memory) + allocator_metadata_size
+        static_cast<char*>(_trusted_memory) + _meta_size
     );
     first_blk->occupied = false;
     first_blk->size     = static_cast<unsigned char>(space_size);
@@ -161,7 +170,7 @@ new (mutex_addr) std::mutex();
     
     std::lock_guard<std::mutex> lock(*mtx);
     
-    void* memory_start = static_cast<char*>(_trusted_memory) + allocator_metadata_size;
+    void* memory_start = static_cast<char*>(_trusted_memory) + _meta_size;
 
     size_t requested_size = size + occupied_block_metadata_size;
     size_t min_power_required = __detail::nearest_greater_k_of_2(requested_size);
@@ -334,24 +343,20 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         return;
     }
     
-    // Get the mutex
     char* trusted_mem = static_cast<char*>(_trusted_memory);
     std::mutex* mtx = reinterpret_cast<std::mutex*>(
         trusted_mem + meta_mutex_offset
     );
     
-    // Lock the mutex
     std::lock_guard<std::mutex> lock(*mtx);
     
-    // Get the block metadata pointer
     block_metadata* block = reinterpret_cast<block_metadata*>(
         static_cast<char*>(at) - sizeof(block_metadata)
     );
 
 
     
-    // Get the memory bounds
-    char* memory_start = trusted_mem + allocator_metadata_size;
+    char* memory_start = trusted_mem + _meta_size;
     unsigned char max_power = *reinterpret_cast<unsigned char*>(
         trusted_mem + 
         sizeof(logger*) + 
@@ -360,7 +365,6 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
     );
     char* memory_end = memory_start + (1ULL << max_power);
     
-    // Check if the pointer belongs to this allocator
     if (reinterpret_cast<char*>(block) < memory_start || 
         reinterpret_cast<char*>(block) >= memory_end)
     {
@@ -373,7 +377,6 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         throw std::invalid_argument("Memory not owned by this allocator");
     }
 
-    // Check if the block is already marked as free
     if (!block->occupied)
     {
         if (get_logger() != nullptr)
@@ -385,9 +388,7 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         throw std::invalid_argument("Double free detected");
     }
     
-    // Mark the block as free
     block->occupied = false;
-    // Merge buddies if possible
     bool merged;
     do
     {
@@ -397,31 +398,24 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         auto block_addr = reinterpret_cast<std::uintptr_t>(block);
         auto buddy_addr = block_addr ^ block_size;
         char* buddy_ptr = reinterpret_cast<char*>(buddy_addr);
-        // Check if buddy is within memory bounds
         if (buddy_ptr < memory_start || buddy_ptr >= memory_end)
             break;
         
         block_metadata* buddy = reinterpret_cast<block_metadata*>(buddy_ptr);
         
-        // Check if buddy is free and same size
         if (!buddy->occupied && buddy->size == block->size)
         {
-            // Determine merged block (lower address)
             block_metadata* merged_block = (block < buddy) ? block : buddy;
             
-            // Update size
             merged_block->size++;
             
-            // Continue merging with new size
             block = merged_block;
             merged = true;
         }
     } while (merged);
     
-    // Log the successful deallocation
     if (get_logger() != nullptr)
     {
-        // Calculate available memory
         size_t available_memory = 0;
         for (auto it = begin(); it != end(); ++it)
         {
@@ -435,13 +429,11 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         success_msg += std::to_string(reinterpret_cast<uintptr_t>(at));
         get_logger()->log(success_msg, logger::severity::debug);
         
-        // Log available memory
         std::string avail_msg = "Available memory: ";
         avail_msg += std::to_string(available_memory);
         avail_msg += " bytes";
         get_logger()->log(avail_msg, logger::severity::information);
         
-        // Log memory state
         std::string memory_state;
         for (auto it = begin(); it != end(); ++it)
         {
@@ -476,7 +468,7 @@ allocator_buddies_system::allocator_buddies_system(const allocator_buddies_syste
         sizeof(std::pmr::memory_resource*) + 
         sizeof(fit_mode)
     );
-    size_t total_memory_size = (1ULL << k) + allocator_metadata_size;
+    size_t total_memory_size = (1ULL << k) + _meta_size;
 
     std::pmr::memory_resource* parent = std::pmr::get_default_resource();
     _trusted_memory = parent->allocate(total_memory_size);
@@ -496,8 +488,8 @@ allocator_buddies_system::allocator_buddies_system(const allocator_buddies_syste
         sizeof(fit_mode) + 
         sizeof(unsigned char)) std::mutex();
 
-    void* src = static_cast<char*>(other._trusted_memory) + allocator_metadata_size;
-    void* dst = static_cast<char*>(_trusted_memory) + allocator_metadata_size;
+    void* src = static_cast<char*>(other._trusted_memory) + _meta_size;
+    void* dst = static_cast<char*>(_trusted_memory) + _meta_size;
     
     std::memcpy(dst, src, (1ULL << k));
 
@@ -605,7 +597,7 @@ std::vector<allocator_test_utils::block_info> allocator_buddies_system::get_bloc
         return blocks;
     }
     
-    void* memory_start = static_cast<char*>(_trusted_memory) + allocator_metadata_size;
+    void* memory_start = static_cast<char*>(_trusted_memory) + _meta_size;
     size_t total_space = 1ULL << *reinterpret_cast<unsigned char*>(
         static_cast<char*>(_trusted_memory) + 
         sizeof(logger*) + 
@@ -617,7 +609,7 @@ std::vector<allocator_test_utils::block_info> allocator_buddies_system::get_bloc
     {
         block_info info;
         const size_t block_total_size = 1ULL << it.size();
-        info.block_size = block_total_size; // Исправлено: возвращаем полный размер блока
+        info.block_size = block_total_size;
         info.is_block_occupied = it.occupied();
         
         blocks.push_back(info);
@@ -629,7 +621,7 @@ std::vector<allocator_test_utils::block_info> allocator_buddies_system::get_bloc
 allocator_buddies_system::buddy_iterator allocator_buddies_system::begin() const noexcept
 
 {
-    void* memory_start = static_cast<char*>(_trusted_memory) + allocator_metadata_size;
+    void* memory_start = static_cast<char*>(_trusted_memory) + _meta_size;
     return buddy_iterator(memory_start);
 }
 
@@ -639,20 +631,16 @@ allocator_buddies_system::buddy_iterator allocator_buddies_system::end() const n
         return buddy_iterator(nullptr);
     }
 
-    // Получаем указатель на область с метаданными аллокатора
     char* metadata_start = static_cast<char*>(_trusted_memory);
     
-    // Рассчитываем смещение для поля max_power
     char* max_power_ptr = metadata_start + 
                          sizeof(logger*) + 
                          sizeof(std::pmr::memory_resource*) + 
                          sizeof(fit_mode);
     
-    // Получаем значение max_power
     unsigned char max_power = *reinterpret_cast<unsigned char*>(max_power_ptr);
     
-    // Рассчитываем конец выделенной памяти
-    void* memory_start = metadata_start + allocator_metadata_size;
+    void* memory_start = metadata_start + _meta_size;
     void* memory_end = static_cast<char*>(memory_start) + (1ULL << max_power);
     
     return buddy_iterator(memory_end);
@@ -680,7 +668,7 @@ allocator_buddies_system::buddy_iterator &allocator_buddies_system::buddy_iterat
 allocator_buddies_system::buddy_iterator allocator_buddies_system::buddy_iterator::operator++(int n)
 {
     buddy_iterator temp = *this;
-    ++(*this);  // Use the prefix increment operator
+    ++(*this); 
     return temp;
 }
 
@@ -689,7 +677,6 @@ size_t allocator_buddies_system::buddy_iterator::size() const noexcept
     if (_block == nullptr)
         return 0;
     
-    // Get the size field from the block metadata
     block_metadata* metadata = static_cast<block_metadata*>(_block);
     return metadata->size;
 }
@@ -699,7 +686,6 @@ bool allocator_buddies_system::buddy_iterator::occupied() const noexcept
     if (_block == nullptr)
         return false;
     
-    // Get the occupied field from the block metadata
     block_metadata* metadata = static_cast<block_metadata*>(_block);
     return metadata->occupied;
 }
@@ -717,10 +703,8 @@ void swap(allocator_buddies_system& a, allocator_buddies_system& b) noexcept
 {
     using std::swap;
     
-    // 1. Обмен указателей на управляемую память
     swap(a._trusted_memory, b._trusted_memory);
     
-    // 2. Обмен состояния базовых классов через присваивание
     static_cast<smart_mem_resource&>(a) = static_cast<smart_mem_resource&&>(b);
     static_cast<smart_mem_resource&>(b) = static_cast<smart_mem_resource&&>(a);
     
