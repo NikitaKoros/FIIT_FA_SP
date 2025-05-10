@@ -8,6 +8,8 @@
 #include <typename_holder.h>
 #include <mutex>
 #include <cmath>
+#include <cstring>
+#include <memory_resource>
 
 namespace __detail
 {
@@ -54,13 +56,46 @@ private:
      * TODO: You must improve it for alignment support
      */
 
-    static constexpr const size_t allocator_metadata_size = sizeof(logger*) + sizeof(allocator_dbg_helper*) + sizeof(fit_mode) + sizeof(unsigned char) + sizeof(std::mutex);
 
-    static constexpr const size_t occupied_block_metadata_size = sizeof(block_metadata) + sizeof(void*);
+    // static constexpr size_t meta_prefix_size = sizeof(logger*) + sizeof(std::pmr::memory_resource*) + sizeof(fit_mode) + sizeof(unsigned char);
+    // static constexpr size_t meta_mutex_offset = ((meta_prefix_size + alignof(std::mutex) - 1) / alignof(std::mutex)) * alignof(std::mutex);
+    // static constexpr size_t raw_meta_size = meta_mutex_offset + sizeof(std::mutex);
+    // static constexpr const size_t occupied_block_metadata_size = sizeof(block_metadata) + sizeof(void*);
+    // static constexpr const size_t min_k = __detail::nearest_greater_k_of_2(occupied_block_metadata_size);
+    // static constexpr size_t allocator_metadata_size = ((raw_meta_size + ((1ULL << min_k) - 1)) / (1ULL << min_k)) * (1ULL << min_k);
+    // static constexpr const size_t free_block_metadata_size = sizeof(block_metadata);
 
-    static constexpr const size_t free_block_metadata_size = sizeof(block_metadata);
+    static constexpr size_t occupied_block_metadata_size = 
+        sizeof(block_metadata) + sizeof(void*);
+    static constexpr size_t free_block_metadata_size = 
+        sizeof(block_metadata);
 
-    static constexpr const size_t min_k = __detail::nearest_greater_k_of_2(occupied_block_metadata_size);
+    // 2) Минимальный степенной размер k, достаточный для occupied_block_metadata_size
+    static constexpr size_t min_k = 
+        __detail::nearest_greater_k_of_2(occupied_block_metadata_size);
+
+    // 3) Сколько байт “сырых” префиксных метаданных у вас до мьютекса
+    static constexpr size_t meta_prefix_size =
+        sizeof(logger*) 
+      + sizeof(std::pmr::memory_resource*) 
+      + sizeof(fit_mode) 
+      + sizeof(unsigned char);
+
+    // 4) Выравниваем под alignof(std::mutex)
+    static constexpr size_t meta_mutex_offset =
+        ((meta_prefix_size + alignof(std::mutex) - 1)
+         / alignof(std::mutex))
+        * alignof(std::mutex);
+
+    // 5) Сколько байт занимает “сырый” хедер вместе с мьютексом
+    static constexpr size_t raw_meta_size =
+        meta_mutex_offset
+      + sizeof(std::mutex);
+
+    // 6) Округляем вверх до границы минимального блока (1<<min_k)
+    static constexpr size_t allocator_metadata_size =
+        ((raw_meta_size + ((1ULL << min_k) - 1)) / (1ULL << min_k))
+      * (1ULL << min_k);
 
 public:
 
@@ -97,12 +132,12 @@ public:
     inline void set_fit_mode(
         allocator_with_fit_mode::fit_mode mode) override;
 
+    friend void swap(allocator_buddies_system& a, allocator_buddies_system& b) noexcept;
 
     std::vector<allocator_test_utils::block_info> get_blocks_info() const noexcept override;
 
 private:
 
-    
     inline logger *get_logger() const override;
     
     inline std::string get_typename() const override;
@@ -116,6 +151,8 @@ private:
         void* _block;
 
     public:
+
+        explicit buddy_iterator(void* ptr) noexcept : _block(ptr) {}
 
         using iterator_category = std::forward_iterator_tag;
         using value_type = void*;
@@ -139,7 +176,7 @@ private:
 
         buddy_iterator();
 
-        buddy_iterator(void* start);
+        //buddy_iterator(void* start);
     };
 
     friend class buddy_iterator;

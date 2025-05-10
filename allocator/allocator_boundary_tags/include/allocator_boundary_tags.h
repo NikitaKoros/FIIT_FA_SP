@@ -115,6 +115,8 @@ private:
 
     inline std::string get_typename() const noexcept override;
 
+    void swap(allocator_boundary_tags& a, allocator_boundary_tags& b) noexcept;
+    
     class boundary_iterator
     {
         void* _occupied_ptr;

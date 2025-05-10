@@ -110,6 +110,7 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
@@ -179,6 +180,8 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/syscall.h \
   /usr/include/time.h \
   /usr/include/unistd.h \
@@ -340,6 +343,10 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
 /usr/include/c++/13/iostream:
 
 /usr/include/c++/13/ext/type_traits.h:
@@ -347,6 +354,10 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 /usr/include/c++/13/ext/string_conversions.h:
 
 /usr/include/c++/13/ext/concurrence.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/ext/atomicity.h:
 
 /usr/include/c++/13/cctype:
 
@@ -391,6 +402,8 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 /usr/include/c++/13/bits/postypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/c++/13/cstring:
 
 /usr/include/c++/13/bits/align.h:
 
@@ -455,12 +468,6 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 /usr/include/c++/13/bits/predefined_ops.h:
 
 /usr/include/c++/13/iosfwd:
-
-/usr/include/c++/13/istream:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/c++/13/bits/stl_function.h:
 
@@ -588,6 +595,8 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 
 /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator_buddies_system/src/allocator_buddies_system.cpp:
 
+/usr/include/string.h:
+
 /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/pp_allocator.h:
 
 /usr/include/c++/13/tr1/gamma.tcc:
@@ -684,6 +693,12 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 
 /usr/include/c++/13/bits/ostream_insert.h:
 
+/usr/include/c++/13/istream:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/c++/13/limits:
@@ -691,6 +706,8 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 /usr/include/c++/13/exception:
 
 /usr/include/c++/13/pstl/glue_memory_defs.h:
+
+/usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
@@ -867,11 +884,3 @@ allocator/allocator_buddies_system/CMakeFiles/mp_os_allctr_allctr_bdds_sstm.dir/
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/c++/13/ext/atomicity.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
