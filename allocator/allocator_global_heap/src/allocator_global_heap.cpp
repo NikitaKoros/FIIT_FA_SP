@@ -24,7 +24,7 @@ allocator_global_heap::allocator_global_heap(
         }
 
         size_t total_size = size + sizeof(size_t);
-        void* block = ::operator new(total_size);
+        void* block = ::operator new(total_size); // глобальная функция, только выделяет память, не вызывая конструкторов
         *reinterpret_cast<size_t*>(block) = size;
         void* user_ptr = static_cast<char*>(block) + sizeof(size_t);
         

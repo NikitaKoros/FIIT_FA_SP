@@ -126,14 +126,16 @@ allocator_buddies_system::allocator_buddies_system(
 
     // new (meta) std::mutex();
 
-    *reinterpret_cast<logger**>(meta) = log;            meta += sizeof(logger*);
-    *reinterpret_cast<std::pmr::memory_resource**>(meta) = actual_parent; meta += sizeof(std::pmr::memory_resource*);
-    *reinterpret_cast<fit_mode*>(meta) = allocate_fit_mode;  meta += sizeof(fit_mode);
+    *reinterpret_cast<logger**>(meta) = log;            
+    meta += sizeof(logger*);
+    *reinterpret_cast<std::pmr::memory_resource**>(meta) = actual_parent; 
+    meta += sizeof(std::pmr::memory_resource*);
+    *reinterpret_cast<fit_mode*>(meta) = allocate_fit_mode;  
+    meta += sizeof(fit_mode);
     *reinterpret_cast<unsigned char*>(meta) = static_cast<unsigned char>(space_size);
 
-
-void* mutex_addr = raw + meta_mutex_offset;
-new (mutex_addr) std::mutex();
+    void* mutex_addr = raw + meta_mutex_offset;
+    new (mutex_addr) std::mutex();
 
     auto *first_blk = reinterpret_cast<block_metadata*>(
         static_cast<char*>(_trusted_memory) + _meta_size
@@ -161,8 +163,6 @@ new (mutex_addr) std::mutex();
         log_msg += ") started";
         get_logger()->log(log_msg, logger::severity::debug);
     }
-
-    
     
     //void* mutex_ptr = static_cast<char*>(_trusted_memory) + sizeof(logger*) + sizeof(std::pmr::memory_resource*) + sizeof(fit_mode) + sizeof(unsigned char);
     void* mutex_ptr = static_cast<char*>(_trusted_memory) + meta_mutex_offset;
@@ -354,8 +354,6 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
         static_cast<char*>(at) - sizeof(block_metadata)
     );
 
-
-    
     char* memory_start = trusted_mem + _meta_size;
     unsigned char max_power = *reinterpret_cast<unsigned char*>(
         trusted_mem + 
@@ -392,7 +390,6 @@ void allocator_buddies_system::do_deallocate_sm(void *at)
     bool merged;
     do
     {
-
         merged = false;
         size_t block_size = 1ULL << block->size;
         auto block_addr = reinterpret_cast<std::uintptr_t>(block);

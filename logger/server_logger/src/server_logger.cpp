@@ -22,7 +22,7 @@ logger& server_logger::log(
 
     std::string formatted = format_message(message, severity);
     
-    httplib::Params params;
+    httplib::Params params; // std::unordered_map<std::string, std::string>
     params.emplace("pid", std::to_string(inner_getpid()));
     params.emplace("sev", logger::severity_to_string(severity));
     params.emplace("message", formatted);
@@ -53,7 +53,6 @@ server_logger::server_logger(const std::string& dest,
             _client.Post("/init", init_params);
         }
     }
-
 }
 
 int server_logger::inner_getpid()
@@ -83,7 +82,7 @@ std::string server_logger::format_message(
                     ss << std::put_time(gmt, "%H:%M:%S");
                     break;
                 case 's':
-                    ss << logger::severity_to_string(severity); // Исправлено здесь
+                    ss << logger::severity_to_string(severity);
                     break;
                 case 'm':
                     ss << message;

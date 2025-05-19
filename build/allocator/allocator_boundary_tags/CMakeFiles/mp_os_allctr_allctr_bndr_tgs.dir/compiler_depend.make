@@ -7,7 +7,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
   /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/allocator_with_fit_mode.h \
   /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/pp_allocator.h \
   /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator_boundary_tags/include/allocator_boundary_tags.h \
-  /home/nikita/university/fiit/FIIT_FA_SP/common/include/not_implemented.h \
   /home/nikita/university/fiit/FIIT_FA_SP/common/include/typename_holder.h \
   /home/nikita/university/fiit/FIIT_FA_SP/logger/logger/include/logger.h \
   /home/nikita/university/fiit/FIIT_FA_SP/logger/logger/include/logger_guardant.h \
@@ -109,7 +108,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
-  /usr/include/c++/13/cstring \
   /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
@@ -167,8 +165,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
-  /usr/include/string.h \
-  /usr/include/strings.h \
   /usr/include/syscall.h \
   /usr/include/time.h \
   /usr/include/unistd.h \
@@ -287,12 +283,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h:
-
 /usr/include/c++/13/iostream:
 
 /usr/include/c++/13/ext/type_traits.h:
@@ -329,6 +319,8 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h:
+
 /usr/include/x86_64-linux-gnu/sys/syscall.h:
 
 /usr/include/c++/13/clocale:
@@ -347,11 +339,13 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/c++/13/bits/postypes.h:
 
-/usr/include/c++/13/cstring:
-
 /usr/include/c++/13/bits/align.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/13/bits/streambuf.tcc:
+
+/usr/include/c++/13/bits/max_size_type.h:
 
 /usr/include/c++/13/bits/new_allocator.h:
 
@@ -405,9 +399,9 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/c++/13/bits/ranges_cmp.h:
 
-/usr/include/c++/13/bits/predefined_ops.h:
-
 /usr/include/c++/13/iosfwd:
+
+/usr/include/c++/13/bits/predefined_ops.h:
 
 /usr/include/c++/13/istream:
 
@@ -436,6 +430,8 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 /usr/include/c++/13/bits/ranges_uninitialized.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h:
 
 /usr/include/c++/13/ext/aligned_buffer.h:
 
@@ -491,10 +487,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/c++/13/bits/max_size_type.h:
-
-/usr/include/c++/13/bits/streambuf.tcc:
-
 /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator_boundary_tags/src/allocator_boundary_tags.cpp:
 
 /usr/include/c++/13/bits/istream.tcc:
@@ -505,17 +497,9 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/allocator_dbg_helper.h:
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h:
-
-/home/nikita/university/fiit/FIIT_FA_SP/common/include/not_implemented.h:
-
-/usr/include/c++/13/bits/functional_hash.h:
-
-/usr/include/errno.h:
+/home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/allocator_with_fit_mode.h:
 
 /usr/include/c++/13/backward/auto_ptr.h:
-
-/home/nikita/university/fiit/FIIT_FA_SP/allocator/allocator/include/allocator_with_fit_mode.h:
 
 /usr/include/c++/13/bits/stringfwd.h:
 
@@ -535,7 +519,15 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/c++/13/bits/parse_numbers.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
 /usr/include/c++/13/bits/basic_string.h:
+
+/usr/include/c++/13/bits/chrono.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/c++/13/bits/stl_bvector.h:
 
@@ -550,14 +542,6 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 /usr/include/c++/13/cwchar:
 
 /usr/include/c++/13/cwctype:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/13/bits/chrono.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/c++/13/bits/streambuf_iterator.h:
 
@@ -593,6 +577,12 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/c++/13/pstl/execution_defs.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h:
+
+/usr/include/c++/13/bits/functional_hash.h:
+
+/usr/include/errno.h:
+
 /usr/include/c++/13/bits/hash_bytes.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h:
@@ -602,6 +592,14 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 /usr/include/c++/13/numbers:
 
 /usr/include/c++/13/bits/locale_classes.tcc:
+
+/usr/include/c++/13/bits/ios_base.h:
+
+/usr/include/c++/13/iterator:
+
+/usr/include/c++/13/climits:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 /usr/include/c++/13/bits/invoke.h:
 
@@ -619,19 +617,9 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/c++/13/bits/ostream_insert.h:
 
-/usr/include/c++/13/bits/ios_base.h:
-
-/usr/include/c++/13/iterator:
-
-/usr/include/c++/13/climits:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
 /usr/include/c++/13/exception:
 
 /usr/include/c++/13/pstl/glue_memory_defs.h:
-
-/usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
@@ -701,15 +689,7 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 
 /usr/include/stdlib.h:
 
-/usr/include/string.h:
-
 /usr/include/unistd.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
@@ -818,3 +798,11 @@ allocator/allocator_boundary_tags/CMakeFiles/mp_os_allctr_allctr_bndr_tgs.dir/sr
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
