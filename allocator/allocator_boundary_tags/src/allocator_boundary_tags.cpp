@@ -111,8 +111,8 @@ allocator_boundary_tags::allocator_boundary_tags(
         parent_allocator = parent_allocator ? parent_allocator : std::pmr::get_default_resource();
         size_t total_size = allocator_metadata_size + space_size;
         if (logger_ptr) {
-            logger_ptr->log("Allocator requires " + std::to_string(total_size) + " bytes", logger::severity::debug);
-            logger_ptr->log("Available " + std::to_string(space_size) + " bytes", logger::severity::information);
+            logger_ptr->log("Requires: " + std::to_string(total_size) + " bytes", logger::severity::debug);
+            logger_ptr->log("Available: " + std::to_string(space_size) + " bytes", logger::severity::information);
         }
 
         _trusted_memory = parent_allocator->allocate(total_size);
@@ -121,14 +121,13 @@ allocator_boundary_tags::allocator_boundary_tags(
         mem += sizeof(logger*);
         *reinterpret_cast<std::pmr::memory_resource**>(mem) = parent_allocator;
         mem += sizeof(std::pmr::memory_resource*);
-
         *reinterpret_cast<allocator_with_fit_mode::fit_mode*>(mem) = fit_mode;
         mem += sizeof(allocator_with_fit_mode::fit_mode);
         *reinterpret_cast<size_t*>(mem) = space_size;
         mem += sizeof(size_t);
         new (reinterpret_cast<std::mutex*>(mem)) std::mutex();
         mem += sizeof(std::mutex);
-        *reinterpret_cast<void**>(mem) = nullptr;
+        *reinterpret_cast<void**>(mem) = nullptr; // указатель на первый блок
 
     } catch (const std::exception& e) {
         if (logger_ptr)
@@ -182,7 +181,6 @@ void* allocator_boundary_tags::make_allocation(const fit_result& fr, size_t size
     }
 
     char* ptr = fr.address;
-    // Записываем размер без флага (LSB = 0)
     *reinterpret_cast<size_t*>(ptr) = use_size & ~size_t(1);
     *reinterpret_cast<void**>(ptr + sizeof(size_t)) = fr.next;
     *reinterpret_cast<void**>(ptr + sizeof(size_t) + sizeof(void*)) = fr.prev;
@@ -233,12 +231,12 @@ allocator_boundary_tags::find_first_fit(size_t size) {
         char* cur_end = reinterpret_cast<char*>(cur)
                        + occupied_block_metadata_size
                        + *reinterpret_cast<size_t*>(cur);
-        void* nx = *reinterpret_cast<void**>(
+        void* nxt = *reinterpret_cast<void**>(
             reinterpret_cast<char*>(cur) + sizeof(size_t));
-        size_t hole = (nx ? reinterpret_cast<char*>(nx) : end) - cur_end;
+        size_t hole = (nxt ? reinterpret_cast<char*>(nxt) : end) - cur_end;
         if (hole >= total)
-            return {cur_end, cur, nx, hole};
-        cur = nx;
+            return {cur_end, cur, nxt, hole};
+        cur = nxt;
     }
     return {nullptr, nullptr, nullptr, 0};
 }
@@ -356,23 +354,19 @@ allocator_boundary_tags::find_worst_fit(size_t size) {
 
 void allocator_boundary_tags::do_deallocate_sm(void* at) {
     if (!at) return;
-    // вычисляем начало метаданных
     auto* meta_start = reinterpret_cast<char*>(at) - occupied_block_metadata_size;
 
     auto* log = get_logger();
     log->log("do_deallocate_sm() called", logger::severity::debug);
     std::lock_guard<std::mutex> guard(get_mutex());
 
-    // помечаем блок как свободный (LSB = 1)
     *reinterpret_cast<size_t*>(meta_start) |= 1;
 
-    // читаем next и prev из метаданных
     void* next_blk = *reinterpret_cast<void**>(meta_start + sizeof(size_t));
     void* prev_blk = *reinterpret_cast<void**>(meta_start + sizeof(size_t) + sizeof(void*));
     char* heap_start = reinterpret_cast<char*>(_trusted_memory) + allocator_metadata_size;
     void** head_ptr = reinterpret_cast<void**>(heap_start - sizeof(void*));
 
-    // удаляем из списка занятых
     if (prev_blk) {
         *reinterpret_cast<void**>(reinterpret_cast<char*>(prev_blk) + sizeof(size_t))
           = next_blk;
@@ -385,7 +379,6 @@ void allocator_boundary_tags::do_deallocate_sm(void* at) {
           = prev_blk;
     }
 
-    // теперь сливаем соседние свободные блоки
     merge_blocks(meta_start);
     log->log("do_deallocate_sm() finished", logger::severity::debug);
 }
@@ -399,7 +392,7 @@ allocator_with_fit_mode::fit_mode allocator_boundary_tags::get_fit_mode() const 
 
     constexpr size_t offset_logger = sizeof(logger*);
     constexpr size_t offset_parent = offset_logger + sizeof(std::pmr::memory_resource*);
-    constexpr size_t offset_mode   = offset_parent + 0; // fit_mode идёт сразу после parent
+    constexpr size_t offset_mode   = offset_parent + 0;
 
     auto* mode_ptr = reinterpret_cast<allocator_with_fit_mode::fit_mode*>(base + offset_mode);
     return *mode_ptr;
@@ -514,11 +507,11 @@ allocator_boundary_tags::boundary_iterator allocator_boundary_tags::end() const 
 bool allocator_boundary_tags::do_is_equal(const std::pmr::memory_resource &other) const noexcept {
 	if (this == &other) return true;
 
-	const auto *derived = dynamic_cast<const allocator_boundary_tags *>(&other);
+	const auto *second = dynamic_cast<const allocator_boundary_tags *>(&other);
 
-	if (!derived) return false;
+	if (!second) return false;
 
-	return this->_trusted_memory == derived->_trusted_memory;
+	return this->_trusted_memory == second->_trusted_memory;
 }
 
 bool allocator_boundary_tags::boundary_iterator::operator==(const allocator_boundary_tags::boundary_iterator &other) const noexcept {
@@ -620,13 +613,12 @@ void allocator_boundary_tags::merge_blocks(void* freed_meta_ptr) {
 
     char* blk_start = reinterpret_cast<char*>(freed_meta_ptr);
     size_t blk_raw = *reinterpret_cast<size_t*>(blk_start);
-    size_t blk_size = blk_raw & ~size_t(1);  // размер без флага
+    size_t blk_size = blk_raw & ~size_t(1);
     char* blk_end = blk_start + occupied_block_metadata_size + blk_size;
 
     char* heap_base = reinterpret_cast<char*>(_trusted_memory) + allocator_metadata_size;
     void** head_ptr = reinterpret_cast<void**>(heap_base - sizeof(void*));
 
-    // Попытка слияния с next, только если он свободен
     void* next_blk = *reinterpret_cast<void**>(blk_start + sizeof(size_t));
     if (next_blk) {
         char* next_start = reinterpret_cast<char*>(next_blk);
@@ -635,7 +627,6 @@ void allocator_boundary_tags::merge_blocks(void* freed_meta_ptr) {
             size_t next_size = next_raw & ~size_t(1);
             void* next_next = *reinterpret_cast<void**>(next_start + sizeof(size_t));
 
-            // объединяем размеры и перенаправляем указатели
             *reinterpret_cast<size_t*>(blk_start) = (blk_size + occupied_block_metadata_size + next_size) | 1;
             *reinterpret_cast<void**>(blk_start + sizeof(size_t)) = next_next;
             if (next_next) {
@@ -644,13 +635,11 @@ void allocator_boundary_tags::merge_blocks(void* freed_meta_ptr) {
             }
             log->log("merge_blocks() merged with next block", logger::severity::debug);
 
-            // обновляем blk_end и blk_size для последующего слияния с prev
             blk_size = (blk_size + occupied_block_metadata_size + next_size);
             blk_end = blk_start + occupied_block_metadata_size + blk_size;
         }
     }
 
-    // Попытка слияния с prev, только если он свободен
     void* prev_blk = *reinterpret_cast<void**>(blk_start + sizeof(size_t) + sizeof(void*));
     if (prev_blk) {
         char* prev_start = reinterpret_cast<char*>(prev_blk);
@@ -667,7 +656,6 @@ void allocator_boundary_tags::merge_blocks(void* freed_meta_ptr) {
                 char* na = reinterpret_cast<char*>(next_after);
                 *reinterpret_cast<void**>(na + sizeof(size_t) + sizeof(void*)) = prev_start;
             }
-            // если голова списка указывала на blk_start, переназначаем её
             if (blk_start == *head_ptr) {
                 *head_ptr = prev_start;
             }
