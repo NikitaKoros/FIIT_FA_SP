@@ -11,7 +11,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries"
+			"target_link_libraries",
+			"target_compile_options"
 		],
 		"files" : 
 		[
@@ -36,19 +37,19 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 5,
+				"line" : 11,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 9,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 13,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
@@ -107,6 +108,12 @@
 				"file" : 4,
 				"line" : 12,
 				"parent" : 11
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
 			}
 		]
 	},
@@ -117,6 +124,14 @@
 			[
 				{
 					"fragment" : "-std=gnu++23"
+				},
+				{
+					"backtrace" : 17,
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 17,
+					"fragment" : "-O0"
 				}
 			],
 			"includes" : 

@@ -148,11 +148,13 @@ TEST(binarySearchTreePositiveTests, noIteratorTest)
                                            }));
     logger->trace("binarySearchTreePositiveTests.test1 started");
 
-    auto al = std::make_unique<allocator_sorted_list>(10000);
+    pp_allocator<std::pair<const int, std::string>> al;
 
-    auto bst = std::make_unique<binary_search_tree<int, std::string>>(std::less<int>(), al.get(), logger.get());
-//    auto bst = new binary_search_tree<int, std::string>(key_comparer(), al.get(), logger.get());
+    //auto bst = std::make_unique<binary_search_tree<int, std::string>>(std::less<int>(), al, logger.get());
 
+    auto bst = std::make_unique<binary_search_tree<int, std::string>>(std::less<int>(), al, logger.get());
+    // auto bst = new binary_search_tree<int, std::string>(key_comparer(), al.get(), logger.get());
+    
     bst->emplace(5, "a");
     bst->emplace(2, "b");
     bst->emplace(15, "c");

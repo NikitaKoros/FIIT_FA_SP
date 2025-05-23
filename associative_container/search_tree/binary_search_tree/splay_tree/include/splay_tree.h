@@ -10,6 +10,7 @@ namespace __detail
     template<typename tkey, typename tvalue, typename compare>
     class bst_impl<tkey, tvalue, compare, SPL_TAG>
     {
+        friend class binary_search_tree<tkey, tvalue, compare, SPL_TAG>;
         template<class ...Args>
         static binary_search_tree<tkey, tvalue, compare, SPL_TAG>::node* create_node(binary_search_tree<tkey, tvalue, compare, SPL_TAG>& cont, Args&& ...args);
 
