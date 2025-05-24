@@ -652,7 +652,6 @@ namespace __detail
                     ? current->parent->left_subtree
                     : current->parent->right_subtree);
 
-            // правый перекос
             if (balance == 2) {
                 auto* right = static_cast<avl_node*>(current->right_subtree);
                 if (right && right->get_balance() == -1) {
@@ -666,7 +665,6 @@ namespace __detail
                 if (new_root->right_subtree) static_cast<avl_node*>(new_root->right_subtree)->recalculate_height();
                 new_root->recalculate_height();
             }
-            // левый перекос
             else if (balance == -2) {
                 auto* left = static_cast<avl_node*>(current->left_subtree);
                 if (left && left->get_balance() == 1) {
@@ -697,7 +695,7 @@ namespace __detail
         bst_node* balance_from = nullptr;
         if (!node) return;
 
-        if (!node->left_subtree && !node->right_subtree) { // leaf or root
+        if (!node->left_subtree && !node->right_subtree) {
             balance_from = node->parent;
 
             if (node->parent) {
@@ -709,7 +707,7 @@ namespace __detail
                 cont._root = nullptr;
             }
         }
-        else if ((node->left_subtree && !node->right_subtree) || (node->right_subtree && !node->left_subtree)) { // only one subtree
+        else if ((node->left_subtree && !node->right_subtree) || (node->right_subtree && !node->left_subtree)) { 
             bst_node* child = node->left_subtree ? node->left_subtree : node->right_subtree;
             balance_from = node->parent;
 
@@ -724,7 +722,7 @@ namespace __detail
 
             child->parent = node->parent;
         }
-        else { // two childs: left and right subtrees
+        else { 
             bst_node** temp_subtree_ptr = &(node->left_subtree);
             while ((*temp_subtree_ptr)->right_subtree) {
                 temp_subtree_ptr = &((*temp_subtree_ptr)->right_subtree);
@@ -780,7 +778,7 @@ namespace __detail
                             ? current->parent->left_subtree
                             : current->parent->right_subtree);
 
-                // правый перекос
+                
                 if (balance == 2) {
                     auto* right = static_cast<avl_node*>(current->right_subtree);
                     if (right && right->get_balance() == -1) {
@@ -796,7 +794,6 @@ namespace __detail
                     new_root->recalculate_height();
                     current = new_root;
                 }
-                // левый перекос
                 else if (balance == -2) {
                     auto* left = static_cast<avl_node*>(current->left_subtree);
                     if (left && left->get_balance() == 1) {

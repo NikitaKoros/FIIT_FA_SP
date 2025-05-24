@@ -758,6 +758,7 @@ public:
     size_t size() const noexcept;
 
     void clear() noexcept;
+    void clear(node* n);
 
     std::pair<infix_iterator, bool> insert(const value_type&);
     std::pair<infix_iterator, bool> insert(value_type&&);
@@ -1120,7 +1121,7 @@ template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 typename binary_search_tree<tkey, tvalue, compare, tag>::prefix_iterator::reference
 binary_search_tree<tkey, tvalue, compare, tag>::prefix_iterator::operator*()
 {
-    if (_data == nullptr) { // cannot be reference to nullptr
+    if (_data == nullptr) {
          throw std::runtime_error("Cannot create a reference out of prefix_iterator that is nullptr");
     }
     return _data->data;
@@ -1239,7 +1240,7 @@ template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 binary_search_tree<tkey, tvalue, compare, tag>::prefix_reverse_iterator::prefix_reverse_iterator(const prefix_iterator& it) noexcept:
     _base(it)
 {
-    --(_base);
+    --(_base); // stl
 }
 
 template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
@@ -1445,7 +1446,7 @@ bool binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator::operator!=(
 
 template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 typename binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator &
-binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator::operator++() & noexcept
+binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator::operator++() & noexcept // начало в самом левом узле
 {
     if (_data == nullptr) return *this;
 
@@ -1519,7 +1520,7 @@ template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 typename binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator::reference
 binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator::operator*()
 {
-    if (_data == nullptr) { // cannot be reference to nullptr
+    if (_data == nullptr) {
         throw std::runtime_error("Cannot create a reference out of prefix_iterator that is nullptr");
     }
     return _data->data;
@@ -1902,13 +1903,37 @@ binary_search_tree<tkey, tvalue, compare, tag>::postfix_iterator::operator--() &
     if (_data->right_subtree){
         _data = _data->right_subtree;
     }
-    else{
-        while (_data != parent->right_subtree){
+    else {
+    node* parent = _data->parent;
+    if (parent == nullptr) {
+        if (_data->left_subtree) {
+            _data = _data->left_subtree;
+            while (_data->right_subtree || _data->left_subtree) {
+                if (_data->right_subtree) {
+                    _data = _data->right_subtree;
+                } else {
+                    _data = _data->left_subtree;
+                }
+            }
+        } else {
+            _data = nullptr;
+        }
+    } else {
+        while (parent != nullptr && _data != parent->right_subtree) {
             _data = parent;
             parent = parent->parent;
         }
-        _data = parent->left_subtree;
+        if (parent == nullptr) {
+            _data = nullptr;
+        } else {
+            _data = parent->left_subtree;
+            while (_data->right_subtree || _data->left_subtree) {
+                if (_data->right_subtree) _data = _data->right_subtree;
+                else _data = _data->left_subtree;
+            }
+        }
     }
+}
     return *this;
 }
 
@@ -1925,7 +1950,7 @@ template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 typename binary_search_tree<tkey, tvalue, compare, tag>::postfix_iterator::reference
 binary_search_tree<tkey, tvalue, compare, tag>::postfix_iterator::operator*()
 {
-    if (_data == nullptr) { // cannot be reference to nullptr
+    if (_data == nullptr) {
         throw std::runtime_error("Cannot create a reference out of prefix_iterator that is nullptr");
     }
     return _data->data;
@@ -2288,7 +2313,7 @@ binary_search_tree<tkey, tvalue, compare, tag>::binary_search_tree(const binary_
     _allocator(other._allocator),
     _size(0)
 {
-    if (other.root) { // _size will become equal to other._size while serial inserting
+    if (other.root) {
         insert(other.begin_prefix(), other.end_prefix());
     } else {
         _root = nullptr;
@@ -2395,16 +2420,18 @@ size_t binary_search_tree<tkey, tvalue, compare, tag>::size() const noexcept
 template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 void binary_search_tree<tkey, tvalue, compare, tag>::clear() noexcept
 {
-    for (auto it = begin_postfix(); it != end_postfix(); ) {
-        tkey key = it->first;
-        ++it; // Сдвигаем до удаления
-
-        erase(key);
-    }
-
-    _root = nullptr;
-    _size = 0;
+    clear(_root);
 }
+
+template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
+void binary_search_tree<tkey, tvalue, compare, tag>::clear(node* n) {
+	if (n != nullptr) {
+		clear(n->left_subtree);
+		clear(n->right_subtree);
+		_allocator.delete_object(n);
+	}
+}
+
 
 
 // endregion binary_search_tree methods_access implementation
@@ -2426,11 +2453,10 @@ binary_search_tree<tkey, tvalue, compare, tag>::insert(const value_type& value)
         } else if (compare_keys(current->data.first, value.first)) {
             current = current->right_subtree;
         } else {
-            return std::make_pair(infix_iterator(current), false); // элемент уже есть
+            return std::make_pair(infix_iterator(current), false);
         }
     }
 
-    // Создаём ноду через аллокатор
     node* new_node = __detail::bst_impl<tkey, tvalue, compare, tag>::create_node(*this, parent, value);
 
     if (_root == nullptr) {
@@ -2450,7 +2476,34 @@ template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
 std::pair<typename binary_search_tree<tkey, tvalue, compare, tag>::infix_iterator, bool>
 binary_search_tree<tkey, tvalue, compare, tag>::insert(value_type&& value)
 {
-    return insert(std::move(value));
+    node* current = _root;
+	node* parent = nullptr;
+
+	while (current != nullptr) {
+		parent = current;
+		if (compare_keys(value.first, current->data.first)) {
+			current = current->left_subtree;
+		} else if (compare_keys(current->data.first, value.first)) {
+			current = current->right_subtree;
+		} else {
+			return std::make_pair(infix_iterator(current), false);
+		}
+	}
+
+	node* new_node = __detail::bst_impl<tkey, tvalue, compare, tag>::create_node(*this, parent, std::move(value));
+
+	if (parent == nullptr) {
+		_root = new_node;
+	} else if (compare_keys(new_node->data.first, parent->data.first)) {
+		parent->left_subtree = new_node;
+	} else {
+		parent->right_subtree = new_node;
+	}
+
+	++_size;
+	
+	__detail::bst_impl<tkey, tvalue, compare, tag>::post_insert(*this, &new_node);
+	return std::make_pair(infix_iterator(new_node), true);
 }
 
 template<typename tkey, typename tvalue, compator<tkey> compare, typename tag>
@@ -2509,9 +2562,6 @@ binary_search_tree<tkey, tvalue, compare, tag>::insert_or_assign(const value_typ
 
 	++_size;
 
-	if (_logger) {
-		_logger->log("New node inserted or assigned", logger::severity::debug);
-	}
 	__detail::bst_impl<tkey, tvalue, compare, tag>::post_insert(*this, &new_node);
 	return infix_iterator(new_node);
 }
@@ -2544,9 +2594,7 @@ binary_search_tree<tkey, tvalue, compare, tag>::insert_or_assign(value_type&& va
 	}
 
 	++_size;
-	if (_logger) {
-		_logger->log("New node inserted or assigned", logger::severity::debug);
-	}
+	
 	__detail::bst_impl<tkey, tvalue, compare, tag>::post_insert(*this, &new_node);
 	return infix_iterator(new_node);
 }
@@ -3134,7 +3182,7 @@ binary_search_tree<tkey, tvalue, compare, tag>::begin_postfix() noexcept
         if (cur->left_subtree) {
             cur = cur->left_subtree;
         } else {
-            cur = cur->right_subtree;
+            cur = cur->right_subtree;  // то есть не самый левый, спускаемся еще вниз если можем
         }
     }
     return postfix_iterator(cur);
@@ -3379,7 +3427,7 @@ namespace __detail {
         node_type* node = *node_ptr;
         if (node == nullptr) return;
 
-        if (!node->left_subtree && !node->right_subtree) {  // leaf or root
+        if (!node->left_subtree && !node->right_subtree) {
             if (node->parent) {
                 if (node == node->parent->left_subtree) {
                     node->parent->left_subtree = nullptr;
@@ -3391,7 +3439,7 @@ namespace __detail {
             return;
         }
 
-        if ((node->left_subtree && !node->right_subtree) || (node->right_subtree && !node->left_subtree)) { // node has one child
+        if ((node->left_subtree && !node->right_subtree) || (node->right_subtree && !node->left_subtree)) {
             node_type* child = node->left_subtree ? node->left_subtree : node->right_subtree;
 
             if (node->parent) {
@@ -3449,7 +3497,6 @@ namespace __detail {
             }
 
             delete_node(cont, node_ptr);
-            // *node_ptr = temp_subtree;
         }
 
     }
