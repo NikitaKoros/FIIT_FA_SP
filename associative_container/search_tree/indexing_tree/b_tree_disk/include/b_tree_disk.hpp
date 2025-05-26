@@ -223,7 +223,6 @@ bool B_tree_disk<tkey, tvalue, compare, t>::erase(const tkey& key) {
 		auto new_node = remove_array(node, index, false);
 		disk_write(new_node);
 	} else {
-		// Internal node: replace with predecessor
 		size_t child_pos = node.pointers[index];
 		auto pred = disk_read(child_pos);
 		while (!pred._is_leaf) {
@@ -269,18 +268,15 @@ void B_tree_disk<tkey, tvalue, compare, t>::rebalance_node(std::stack<std::pair<
 	if (node._is_leaf && node.size >= min_keys) return;
 	if (!node._is_leaf && node.size >= min_keys) return;
 
-	if (path.empty()) return;// root case handled separately
+	if (path.empty()) return;
 
-	// Parent info
 	auto [parent_pos, parent_index] = path.top();
 	auto parent = disk_read(parent_pos);
 
-	// Try borrow from left sibling
 	if (parent_index > 0) {
 		size_t left_pos = parent.pointers[parent_index - 1];
 		auto left = disk_read(left_pos);
 		if (left.size > min_keys) {
-			// Shift keys right in node
 			node.keys.insert(node.keys.begin(), parent.keys[parent_index - 1]);
 			if (!node._is_leaf) node.pointers.insert(node.pointers.begin(), left.pointers.back());
 
@@ -295,7 +291,6 @@ void B_tree_disk<tkey, tvalue, compare, t>::rebalance_node(std::stack<std::pair<
 			return;
 		}
 	}
-	// Try borrow from right sibling
 	if (parent_index < parent.pointers.size() - 1) {
 		size_t right_pos = parent.pointers[parent_index + 1];
 		auto right = disk_read(right_pos);
@@ -314,13 +309,10 @@ void B_tree_disk<tkey, tvalue, compare, t>::rebalance_node(std::stack<std::pair<
 			return;
 		}
 	}
-	// Merge with sibling (no borrow)
 	if (parent_index > 0) {
-		// merge with left
 		size_t left_pos = parent.pointers[parent_index - 1];
 		auto left = disk_read(left_pos);
 
-		// bring down parent key
 		left.keys.push_back(parent.keys[parent_index - 1]);
 		for (auto& k: node.keys) left.keys.push_back(k);
 		if (!node._is_leaf) {
@@ -330,11 +322,9 @@ void B_tree_disk<tkey, tvalue, compare, t>::rebalance_node(std::stack<std::pair<
 		left.size = left.keys.size();
 		disk_write(left);
 
-		// remove parent key and pointer
 		parent.keys.erase(parent.keys.begin() + parent_index - 1);
 		parent.pointers.erase(parent.pointers.begin() + parent_index);
 	} else {
-		// merge with right
 		size_t right_pos = parent.pointers[parent_index + 1];
 		auto right = disk_read(right_pos);
 		node.keys.push_back(parent.keys[parent_index]);
@@ -380,39 +370,29 @@ bool B_tree_disk<tkey, tvalue, compare, t>::update(const B_tree_disk::tree_data_
 
 template<serializable tkey, serializable tvalue, compator<tkey> compare, std::size_t t>
 bool B_tree_disk<tkey, tvalue, compare, t>::insert(const tree_data_type& data) {
-    // 1) Ищем путь к месту вставки
     auto [path, info] = find_path(data.first);
 
-    // Если ключ уже есть — ничего не делаем
     if (info.second) return false;
 
-    // 2) Получаем лист, в который будем писать
     auto [leaf_pos, leaf_idx] = path.top();
     auto leaf = disk_read(leaf_pos);
 
-    // 3) Вставляем пару в память узла
-    insert_array(leaf, /*right_node=*/0, data, info.first);
+    insert_array(leaf, 0, data, info.first);
 
-    // 4) Записываем изменённый лист на диск
     disk_write(leaf);
 
-    // 5) Если это была вставка в единственный узел (корень-лист), 
-    //    обновляем позицию корня
     if (path.size() == 1 && leaf_pos == _position_root) {
         _position_root = leaf.position_in_disk;
     }
 
-    // 6) Проверяем переполнение и делаем split'ы вверх по дереву
     while (!path.empty()) {
         auto [pos, idx] = path.top();
         auto node = disk_read(pos);
 
         if (node.size <= maximum_keys_in_node) {
-            // Узел не переполнен, можно закончить
             break;
         }
 
-        // Узел переполнен, делим
         split_node(path);
     }
 
@@ -425,7 +405,6 @@ bool B_tree_disk<tkey, tvalue, compare, t>::insert(const tree_data_type& data) {
 
 template<serializable tkey, serializable tvalue, compator<tkey> compare, std::size_t t>
 void B_tree_disk<tkey, tvalue, compare, t>::split_node(std::stack<std::pair<size_t, size_t>>& path) {
-    // Верхний узел — тот, который нужно разбить
     auto [pos, index] = path.top();
     path.pop();
 
@@ -434,36 +413,30 @@ void B_tree_disk<tkey, tvalue, compare, t>::split_node(std::stack<std::pair<size
     btree_disk_node new_node(node._is_leaf);
     new_node.size = t - 1;
 
-    // Переносим правую половину ключей в новый узел
     for (size_t i = 0; i < t - 1; ++i) {
         new_node.keys.push_back(node.keys[t + i]);
     }
 
-    // Переносим указатели если это не лист
     if (!node._is_leaf) {
         for (size_t i = 0; i < t; ++i) {
             new_node.pointers.push_back(node.pointers[t + i]);
         }
     }
 
-    // Обрезаем левый узел
     node.keys.resize(t - 1);
     if (!node._is_leaf) {
         node.pointers.resize(t);
     }
     node.size = t - 1;
 
-    // Новый узел получает новый уникальный позиционный оффсет
     new_node.position_in_disk = ++_count_of_node;
 
     disk_write(node);
     disk_write(new_node);
 
-    // Средний ключ для поднятия
     auto median = node.keys[t - 1];
 
     if (path.empty()) {
-        // Создаём новый корень, если сплит был корня
         btree_disk_node root_node(false);
         root_node.size = 1;
         root_node.keys.push_back(median);
@@ -474,7 +447,6 @@ void B_tree_disk<tkey, tvalue, compare, t>::split_node(std::stack<std::pair<size
         _position_root = root_node.position_in_disk;
         disk_write(root_node);
     } else {
-        // Вставляем median в родительский узел
         auto [ppos, pindex] = path.top();
         path.pop();
 
@@ -483,8 +455,6 @@ void B_tree_disk<tkey, tvalue, compare, t>::split_node(std::stack<std::pair<size
         insert_array(parent, new_node.position_in_disk, median, index);
         disk_write(parent);
 
-        // После вставки обновляем индекс текущего узла в родителе,
-        // чтобы последующие split корректно ориентировались
         if (!path.empty()) {
             auto& top = path.top();
             if (top.second > index) {
@@ -492,7 +462,6 @@ void B_tree_disk<tkey, tvalue, compare, t>::split_node(std::stack<std::pair<size
             }
         }
 
-        // Кладём родителя обратно в стек для дальнейшей обработки
         path.push({ppos, pindex});
     }
 }
@@ -550,24 +519,19 @@ std::pair<size_t, bool> B_tree_disk<tkey, tvalue, compare, t>::find_index(const 
 
 template<serializable tkey, serializable tvalue, compator<tkey> compare, std::size_t t>
 void B_tree_disk<tkey, tvalue, compare, t>::btree_disk_node::serialize(std::fstream& stream, std::fstream& stream_for_data) const {
-	// Serialize node header
 	stream.write(reinterpret_cast<const char*>(&size), sizeof(size));
 	stream.write(reinterpret_cast<const char*>(&_is_leaf), sizeof(_is_leaf));
 	stream.write(reinterpret_cast<const char*>(&position_in_disk), sizeof(position_in_disk));
 
-	// Serialize keys and values
-	// First write count
 	size_t key_count = keys.size();
 	stream.write(reinterpret_cast<const char*>(&key_count), sizeof(key_count));
 	for (const auto& kv: keys) {
-		// Serialize into data file
 		kv.first.serialize(stream_for_data);
 		kv.second.serialize(stream_for_data);
 		size_t offset = static_cast<size_t>(stream_for_data.tellp()) - kv.first.serialize_size() - kv.second.serialize_size();
 		stream.write(reinterpret_cast<const char*>(&offset), sizeof(offset));
 	}
 
-	// Serialize child pointers
 	size_t ptr_count = pointers.size();
 	stream.write(reinterpret_cast<const char*>(&ptr_count), sizeof(ptr_count));
 	for (size_t ptr: pointers) {
@@ -577,10 +541,8 @@ void B_tree_disk<tkey, tvalue, compare, t>::btree_disk_node::serialize(std::fstr
 
 template<serializable tkey, serializable tvalue, compator<tkey> compare, std::size_t t>
 void B_tree_disk<tkey, tvalue, compare, t>::disk_write(btree_disk_node& node) {
-	// Перемещаемся в конец файла и запоминаем позицию
     _file_for_tree.seekp(0, std::ios::end);
     node.position_in_disk = static_cast<size_t>(_file_for_tree.tellp());
-    // Сериализуем узел: сначала в индексный файл, потом в data-файл
     node.serialize(_file_for_tree, _file_for_key_value);
 
 }
@@ -592,7 +554,6 @@ typename B_tree_disk<tkey, tvalue, compare, t>::btree_disk_node B_tree_disk<tkey
 	stream.read(reinterpret_cast<char*>(&node._is_leaf), sizeof(node._is_leaf));
 	stream.read(reinterpret_cast<char*>(&node.position_in_disk), sizeof(node.position_in_disk));
 
-	// Read keys and their offsets
 	size_t key_count;
 	stream.read(reinterpret_cast<char*>(&key_count), sizeof(key_count));
 	node.keys.clear();
@@ -605,7 +566,6 @@ typename B_tree_disk<tkey, tvalue, compare, t>::btree_disk_node B_tree_disk<tkey
 		node.keys.emplace_back(std::move(k), std::move(v));
 	}
 
-	// Read child pointers
 	size_t ptr_count;
 	stream.read(reinterpret_cast<char*>(&ptr_count), sizeof(ptr_count));
 	node.pointers.clear();
@@ -655,12 +615,10 @@ B_tree_disk<tkey, tvalue, compare, t>::B_tree_disk(const std::string& file_path,
     auto idx_path  = base; idx_path += ".tree";
     auto data_path = base; data_path += ".data";
 
-    // Попробуем открыть без trunc — если файлов ещё нет, .is_open() окажется false
     _file_for_tree.open(idx_path, std::ios::in | std::ios::out | std::ios::binary);
     _file_for_key_value.open(data_path, std::ios::in | std::ios::out | std::ios::binary);
 
     if (!_file_for_tree.is_open() || !_file_for_key_value.is_open()) {
-        // Создаём новые пустые файлы
         _file_for_tree.open(idx_path,
             std::ios::trunc | std::ios::in | std::ios::out | std::ios::binary);
         _file_for_key_value.open(data_path,
@@ -669,7 +627,6 @@ B_tree_disk<tkey, tvalue, compare, t>::B_tree_disk(const std::string& file_path,
             throw std::runtime_error("B_tree_disk: cannot create data files");
         }
 
-        // Резервируем место под шапку: два size_t
         _position_root = 0;
         _count_of_node = 0;
         _file_for_tree.seekp(0, std::ios::beg);
@@ -677,27 +634,21 @@ B_tree_disk<tkey, tvalue, compare, t>::B_tree_disk(const std::string& file_path,
         _file_for_tree.write(reinterpret_cast<const char*>(&_count_of_node), sizeof(_count_of_node));
         _file_for_tree.flush();
 
-        // Создаём пустой корень
         btree_disk_node root(true);
-        // Запись узла: внутри disk_write сделает tellp() от начала+шапка
         disk_write(root);
 
-        // После disk_write у root.position_in_disk установлен реальный offset
         _position_root = root.position_in_disk;
         _count_of_node = root.position_in_disk + 1;
 
-        // Обновляем шапку новыми значениями
         _file_for_tree.seekp(0, std::ios::beg);
         _file_for_tree.write(reinterpret_cast<const char*>(&_position_root), sizeof(_position_root));
         _file_for_tree.write(reinterpret_cast<const char*>(&_count_of_node), sizeof(_count_of_node));
         _file_for_tree.flush();
     }
     else {
-        // Файлы уже есть — читаем шапку
         _file_for_tree.seekg(0, std::ios::beg);
         _file_for_tree.read(reinterpret_cast<char*>(&_position_root), sizeof(_position_root));
         _file_for_tree.read(reinterpret_cast<char*>(&_count_of_node), sizeof(_count_of_node));
-        // Можно добавить проверку корректности: 0 <= position_root < count_of_node
     }
 }
 
@@ -709,13 +660,11 @@ void B_tree_disk<tkey, tvalue, compare, t>::check_tree(size_t pos, size_t depth)
 	size_t max_keys = maximum_keys_in_node;
 	assert(node.size >= min_keys && node.size <= max_keys);
 
-	// Check sorted keys
 	for (size_t i = 1; i < node.size; ++i) {
 		assert(compare_keys(node.keys[i - 1].first, node.keys[i].first));
 	}
 
 	if (!node._is_leaf) {
-		// pointers should be size+1
 		assert(node.pointers.size() == node.size + 1);
 		for (size_t i = 0; i < node.pointers.size(); ++i) {
 			check_tree(node.pointers[i], depth + 1);
@@ -761,7 +710,6 @@ typename B_tree_disk<tkey, tvalue, compare, t>::btree_disk_const_iterator::self&
 		auto node = _tree.disk_read(node_pos);
 		if (idx + 1 < node.size) {
 			_path.top().second = idx + 1;
-			// descend to leftmost of this subtree
 			if (!node._is_leaf) {
 				size_t pos = node.pointers[idx + 1];
 				while (true) {
@@ -792,7 +740,6 @@ typename B_tree_disk<tkey, tvalue, compare, t>::btree_disk_const_iterator::self&
 	auto node = _tree.disk_read(node_pos);
 	if (idx > 0) {
 		_path.top().second = idx - 1;
-		// descend to rightmost of this subtree
 		if (!node._is_leaf) {
 			size_t pos = node.pointers[idx];
 			while (true) {
@@ -804,7 +751,6 @@ typename B_tree_disk<tkey, tvalue, compare, t>::btree_disk_const_iterator::self&
 			}
 		}
 	} else {
-		// ascend until we can move left
 		_path.pop();
 		while (!_path.empty()) {
 			auto& [p_pos, p_idx] = _path.top();

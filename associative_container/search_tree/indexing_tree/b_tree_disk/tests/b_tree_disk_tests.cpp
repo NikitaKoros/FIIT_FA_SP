@@ -9,7 +9,6 @@
 #include <client_logger_builder.h>
 
 
-// Простая обёртка для int
 struct SerializableInt {
     int value;
     SerializableInt() = default;
@@ -29,7 +28,6 @@ struct SerializableInt {
     bool operator==(SerializableInt const& o) const { return value == o.value; }
 };
 
-// Простая обёртка для std::string
 struct SerializableString {
     std::string value;
     SerializableString() = default;
@@ -60,7 +58,6 @@ struct IntCmp {
     }
 };
 
-// Вспомогательная функция для сравнения результатов обхода
 template<typename Tree>
 std::vector<std::pair<int, std::string>> collect_all(Tree &tree) {
     std::vector<std::pair<int, std::string>> res;
@@ -72,7 +69,6 @@ std::vector<std::pair<int, std::string>> collect_all(Tree &tree) {
     return res;
 }
 
-// Считываем все элементы дерева в вектор
 bool compare_results(
     const std::vector<std::pair<int, std::string>>& expected,
     const std::vector<std::pair<int, std::string>>& actual)
@@ -84,7 +80,6 @@ bool compare_results(
     return true;
 }
 
-// Удаляем файлы-основания, чтобы каждый тест начинался «с чистого slate»
 void cleanup_files(std::string base) {
     std::filesystem::remove(base + ".tree");
     std::filesystem::remove(base + ".data");
