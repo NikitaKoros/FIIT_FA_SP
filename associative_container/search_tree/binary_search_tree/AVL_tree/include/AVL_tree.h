@@ -734,7 +734,7 @@ namespace __detail
             if (temp_subtree->parent != node) {
                 temp_subtree->parent->right_subtree = temp_subtree->left_subtree;
                 if (temp_subtree->left_subtree) {
-                    temp_subtree->left_subtree->parent = temp_subtree->parent;
+                    temp_subtree->left_subtree->parent = temp_subtree->parent; // по факту оторвали самый правый в левом и на его место поставили его левое
                 }
 
                 balance_from = temp_subtree->parent;
