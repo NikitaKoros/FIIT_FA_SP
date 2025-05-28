@@ -66,12 +66,11 @@ TEST(positiveTests, test23)
     void *first_block = allocator_instance->allocate(sizeof(unsigned char) * 40);
     
     auto actual_blocks_state = dynamic_cast<allocator_test_utils *>(allocator_instance.get())->get_blocks_info();
-    std::vector<allocator_test_utils::block_info> expected_blocks_state
-        {
-            { .block_size = 64, .is_block_occupied = true },
-            { .block_size = 64, .is_block_occupied = false },
-            { .block_size = 128, .is_block_occupied = false }
-        };
+    std::vector<allocator_test_utils::block_info> expected_blocks_state {
+        { .block_size = 64, .is_block_occupied = true },
+        { .block_size = 64, .is_block_occupied = false },
+        { .block_size = 128, .is_block_occupied = false }
+    };
     
     ASSERT_EQ(actual_blocks_state.size(), expected_blocks_state.size());
     for (int i = 0; i < actual_blocks_state.size(); i++)
